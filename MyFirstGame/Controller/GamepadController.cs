@@ -7,76 +7,43 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
-using MyFirstGame.interfaces;
-using sprint0;
+using Sprint0.interfaces;
+using Sprint0;
 using Sprint0.Command;
 
 namespace Sprint0.Controller
 {
-    public class GamepadController : IController
+    public class GamepadController : Controllers
     {
 
-        private ICommand ExitCommand { get; set; }       //q for quit this game
-        private ICommand NmNaCommand { get; set; }       //non moving non animated
-        private ICommand NmACommand { get; set; }        //non moving animated
-        private ICommand MNaCommand { get; set; }        //moving non animated
-        private ICommand MACommand { get; set; }         //movng animated
-
         private PlayerIndex playerIndex;
-        GamePadState previousState;
+        GamePadState previousState, emptyState;
 
         
         public GamepadController(PlayerIndex index)
         {
             playerIndex = index;
             previousState = GamePad.GetState(playerIndex);
+            emptyState = new GamePadState();
         }
 
-        public void Update()
+        public override void Update()
         {
             GamePadState currentState = GamePad.GetState(playerIndex);
 
-            if(currentState.IsButtonDown(Buttons.Start))
+            if (currentState.IsConnected)
             {
-                if(!previousState.IsButtonDown(Buttons.Start))
+                if(currentState != emptyState)
                 {
-                    System.Diagnostics.Debug.WriteLine("start pressed");
-                    if (ExitCommand != null)
-                        ExitCommand.Execute();
-                }
-
-            }else if (currentState.IsButtonDown(Buttons.A))
-            {
-                if(!previousState.IsButtonDown(Buttons.A))
-                {
-                    System.Diagnostics.Debug.WriteLine("a pressed");
-                    if (NmNaCommand != null)
-                        NmNaCommand.Execute();
-                }
-
-            } else if (currentState.IsButtonDown(Buttons.B))
-            {
-                if (!previousState.IsButtonDown(Buttons.B))
-                {
-                    if(NmACommand != null)
-                        NmACommand.Execute();
-                }
-            } else if (currentState.IsButtonDown(Buttons.X))
-            {
-                if (!previousState.IsButtonDown(Buttons.X))
-                {
-                    if (MNaCommand != null)
-                        MNaCommand.Execute();
-                }
-            } else if (currentState.IsButtonDown(Buttons.Y))
-            {
-                if (!previousState.IsButtonDown(Buttons.Y))
-                {
-                    if (MACommand != null)
-                        MACommand.Execute();
+                    var buttonList = (Buttons[])Enum.GetValues(typeof(Buttons));
+                    foreach (var button in buttonList)
+                    {
+                        if (currentState.IsButtonDown(button) && !previousState.IsButtonDown(button))
+                            if (commands.ContainsKey((int)button))
+                                commands[(int)button].Execute();
+                    }
                 }
             }
-
 
             previousState = currentState;
         }
