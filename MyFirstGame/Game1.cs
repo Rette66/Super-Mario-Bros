@@ -9,8 +9,6 @@ using Spring0.Sprites;
 
 namespace Sprint0
 {
-
-    //Ben - Change Test
     public class Game1 : Game
     {
         private GraphicsDeviceManager _graphics;
