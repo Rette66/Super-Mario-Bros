@@ -11,11 +11,11 @@ using MyFirstGame.interfaces;
 using sprint0;
 using Sprint0.Command;
 
-
 namespace Sprint0.Controller
 {
     public class GamepadController : IController
     {
+
         private ICommand ExitCommand { get; set; }       //q for quit this game
         private ICommand NmNaCommand { get; set; }       //non moving non animated
         private ICommand NmACommand { get; set; }        //non moving animated
