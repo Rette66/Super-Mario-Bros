@@ -120,7 +120,7 @@ namespace Sprint0
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             // TODO: Add your drawing code here
-
+            //change
             _spriteBatch.Begin();
 
             _spriteBatch.Draw(background, new Rectangle(0, 0, 800, 480), Color.White);
