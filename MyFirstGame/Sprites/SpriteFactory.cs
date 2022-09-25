@@ -46,6 +46,28 @@ namespace Sprint0.Sprites
     }
 
 
+    /*Coin sprite*/
+    class CoinFactory : SpriteFactory
+    {
+        private static SpriteFactory instance;
+
+        public static SpriteFactory Instance
+        {
+            get
+            {
+                if (instance == null)
+                {
+                    instance = new CoinFactory();
+                }
+                return instance;
+            }
+        }
+
+        public override Sprite Create(Game1 game, Vector2 pos)
+        {
+            return new CoinSprite(game, pos);
+        }
+    }
 
 
 

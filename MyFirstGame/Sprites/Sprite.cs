@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Sprint0.interfaces;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,12 +23,14 @@ namespace Sprint0.Sprites
 
         bool isAnimated;
         Point currentFrame;
+        Point frameSize;
         Point animatedSpriteSize;
         int timeSinceLastFrame = 0;
         int delayTime;
         
 
-        public Sprite(Texture2D texture, Vector2 position,Vector2 speed, bool isVisible, bool isAnimated, int delayTime, Point animatedSpriteSize)
+        public Sprite(Texture2D texture, Vector2 position,Vector2 speed, bool isVisible,
+            bool isAnimated, int delayTime, Point animatedSpriteSize, Point frameSize)
         {
             this.texture = texture;
             this.position = position;
@@ -36,6 +39,7 @@ namespace Sprint0.Sprites
             this.isAnimated = isAnimated;
             this.delayTime = delayTime;
             this.animatedSpriteSize = animatedSpriteSize;
+            this.frameSize = frameSize;
             currentFrame = new Point(0,0);
 
         }
@@ -48,11 +52,11 @@ namespace Sprint0.Sprites
                 if(timeSinceLastFrame >= delayTime)
                 {
                     timeSinceLastFrame -= delayTime;
-                    currentFrame.X++;
+                    ++currentFrame.X;
                     if(currentFrame.X >= animatedSpriteSize.X)
                     {
                         currentFrame.X = 0;
-                        currentFrame.Y++;
+                        ++currentFrame.Y;
                         if (currentFrame.Y >= animatedSpriteSize.Y)
                             currentFrame.Y = 0;
                     }
@@ -73,7 +77,10 @@ namespace Sprint0.Sprites
 
         public void Draw(SpriteBatch batch)
         {
-            batch.Draw(texture, position, Color.White);
+            batch.Draw(texture, position,
+                new Rectangle(currentFrame.X * frameSize.X, currentFrame.Y * frameSize.Y,
+                frameSize.X, frameSize.Y), 
+                Color.White, 0, Vector2.Zero, 1, SpriteEffects.None, 0);
         }
 
 

@@ -26,6 +26,7 @@ namespace Sprint0
         private IController gamepad;
 
         private Sprite mario;
+        private Sprite coin;
  
         public Color fontColor { get; set; } = Color.White;
         private SpriteFont HUDFont;
@@ -99,6 +100,7 @@ namespace Sprint0
 
 
             mario = PlayerOneAvatarFactory.Instance.Create(this, new Vector2(100,100));
+            coin = CoinFactory.Instance.Create(this, new Vector2(150, 100));
 
 
         }
@@ -115,7 +117,7 @@ namespace Sprint0
             mna.Update();
             nma.Update();
             ma.Update();
-
+            coin.Update(gameTime);
 
             base.Update(gameTime);
         }
@@ -138,6 +140,7 @@ namespace Sprint0
             nma.Draw(_spriteBatch);
             ma.Draw(_spriteBatch);
             mario.Draw(_spriteBatch);
+            coin.Draw(_spriteBatch);
 
             _spriteBatch.End();
 
