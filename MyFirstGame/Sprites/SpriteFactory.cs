@@ -69,6 +69,96 @@ namespace Sprint0.Sprites
         }
     }
 
+    /*Star sprite*/
+    class StarFactory : SpriteFactory
+    {
+        private static SpriteFactory instance;
+
+        public static SpriteFactory Instance
+        {
+            get
+            {
+                if (instance == null)
+                {
+                    instance = new StarFactory();
+                }
+                return instance;
+            }
+        }
+
+        public override Sprite Create(Game1 game, Vector2 pos)
+        {
+            return new StarSprite(game, pos);
+        }
+    }
 
 
+    /*FireFlower sprite*/
+    class FireFlowerFactory : SpriteFactory
+    {
+        private static SpriteFactory instance;
+
+        public static SpriteFactory Instance
+        {
+            get
+            {
+                if (instance == null)
+                {
+                    instance = new FireFlowerFactory();
+                }
+                return instance;
+            }
+        }
+
+        public override Sprite Create(Game1 game, Vector2 pos)
+        {
+            return new FireFlowerSprite(game, pos);
+        }
+    }
+
+    /*Coin sprite*/
+    class SuperMushroomFactory : SpriteFactory
+    {
+        private static SpriteFactory instance;
+
+        public static SpriteFactory Instance
+        {
+            get
+            {
+                if (instance == null)
+                {
+                    instance = new SuperMushroomFactory();
+                }
+                return instance;
+            }
+        }
+
+        public override Sprite Create(Game1 game, Vector2 pos)
+        {
+            return new SuperMushroomSprite(game, pos);
+        }
+    }
+
+    /*Coin sprite*/
+    class OneUpMushroomFactory : SpriteFactory
+    {
+        private static SpriteFactory instance;
+
+        public static SpriteFactory Instance
+        {
+            get
+            {
+                if (instance == null)
+                {
+                    instance = new OneUpMushroomFactory();
+                }
+                return instance;
+            }
+        }
+
+        public override Sprite Create(Game1 game, Vector2 pos)
+        {
+            return new OneUpMushroomSprite(game, pos);
+        }
+    }
 }

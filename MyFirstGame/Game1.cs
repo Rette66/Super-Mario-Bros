@@ -27,6 +27,11 @@ namespace Sprint0
 
         private Sprite mario;
         private Sprite coin;
+        private Sprite star;
+        private Sprite fireFlower;
+        private Sprite superMushroom;
+        private Sprite oneUpMushroom;
+
  
         public Color fontColor { get; set; } = Color.White;
         private SpriteFont HUDFont;
@@ -101,7 +106,10 @@ namespace Sprint0
 
             mario = PlayerOneAvatarFactory.Instance.Create(this, new Vector2(100,100));
             coin = CoinFactory.Instance.Create(this, new Vector2(150, 100));
-
+            star = StarFactory.Instance.Create(this, new Vector2(200, 100));
+            fireFlower = FireFlowerFactory.Instance.Create(this, new Vector2(250, 100));
+            superMushroom = SuperMushroomFactory.Instance.Create(this, new Vector2(300, 100));
+            oneUpMushroom = OneUpMushroomFactory.Instance.Create(this, new Vector2(350, 100));
 
         }
 
@@ -118,6 +126,10 @@ namespace Sprint0
             nma.Update();
             ma.Update();
             coin.Update(gameTime);
+            star.Update(gameTime);
+            fireFlower.Update(gameTime);
+            superMushroom.Update(gameTime);
+            oneUpMushroom.Update(gameTime);
 
             base.Update(gameTime);
         }
@@ -141,7 +153,11 @@ namespace Sprint0
             ma.Draw(_spriteBatch);
             mario.Draw(_spriteBatch);
             coin.Draw(_spriteBatch);
-
+            star.Draw(_spriteBatch);
+            fireFlower.Draw(_spriteBatch);
+            superMushroom.Draw(_spriteBatch);
+            oneUpMushroom.Draw(_spriteBatch);
+            
             _spriteBatch.End();
 
             base.Draw(gameTime);
