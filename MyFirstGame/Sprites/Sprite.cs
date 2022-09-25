@@ -83,15 +83,5 @@ namespace Sprint0.Sprites
                 Color.White, 0, Vector2.Zero, 1, SpriteEffects.None, 0);
         }
 
-
-        public int Height()
-        {
-            return texture.Height;
-        }
-
-        public int Width()
-        {
-            return texture.Width;
-        }
     }
 }

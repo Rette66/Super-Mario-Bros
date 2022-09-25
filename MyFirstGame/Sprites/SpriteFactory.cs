@@ -161,4 +161,110 @@ namespace Sprint0.Sprites
             return new OneUpMushroomSprite(game, pos);
         }
     }
+    class QuestionBlockFactory : SpriteFactory
+    {
+        private static SpriteFactory instance;
+
+        public static SpriteFactory Instance
+        {
+            get
+            {
+                if (instance == null)
+                {
+                    instance = new QuestionBlockFactory();
+                }
+                return instance;
+            }
+        }
+
+        public override Sprite Create(Game1 game, Vector2 pos)
+        {
+            return new QuestionBlockSprite(game, pos);
+        }
+    }
+    class FloorBlockFactory : SpriteFactory
+    {
+        private static SpriteFactory instance;
+
+        public static SpriteFactory Instance
+        {
+            get
+            {
+                if (instance == null)
+                {
+                    instance = new FloorBlockFactory();
+                }
+                return instance;
+            }
+        }
+
+        public override Sprite Create(Game1 game, Vector2 pos)
+        {
+            return new FloorBlockSprite(game, pos);
+        }
+    }
+
+    class BrickBlockFactory : SpriteFactory
+    {
+        private static SpriteFactory instance;
+
+        public static SpriteFactory Instance
+        {
+            get
+            {
+                if (instance == null)
+                {
+                    instance = new BrickBlockFactory();
+                }
+                return instance;
+            }
+        }
+
+        public override Sprite Create(Game1 game, Vector2 pos)
+        {
+            return new BrickBlockSprite(game, pos);
+        }
+    }
+    class UsedBlockFactory : SpriteFactory
+    {
+        private static SpriteFactory instance;
+
+        public static SpriteFactory Instance
+        {
+            get
+            {
+                if (instance == null)
+                {
+                    instance = new UsedBlockFactory();
+                }
+                return instance;
+            }
+        }
+
+        public override Sprite Create(Game1 game, Vector2 pos)
+        {
+            return new UsedBlockSprite(game, pos);
+        }
+    }
+    class StairBlockFactory : SpriteFactory
+    {
+        private static SpriteFactory instance;
+
+        public static SpriteFactory Instance
+        {
+            get
+            {
+                if (instance == null)
+                {
+                    instance = new StairBlockFactory();
+                }
+                return instance;
+            }
+        }
+
+        public override Sprite Create(Game1 game, Vector2 pos)
+        {
+            return new StairBlockSprite(game, pos);
+        }
+    }
 }

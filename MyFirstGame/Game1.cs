@@ -5,111 +5,96 @@ using Sprint0.Sprites;
 using Sprint0.Command;
 using Sprint0.Controller;
 using Sprint0.interfaces;
+using Sprint0.Theming;
+using System.Collections.Generic;
+using System.Diagnostics;
 
 namespace Sprint0
 {
     public class Game1 : Game
     {
-        //new version ray
-        private GraphicsDeviceManager _graphics;
-        private SpriteBatch _spriteBatch;
+        public GraphicsDeviceManager graphics;
+        static private Game1 game;
+        SpriteBatch spriteBatch;
+        Stage stage;
+        List<Scene> scenes;
+        int scene;
 
-        private NmNaSprite nmna;
-        private MNaSprite mna;
-        private NmASprite nma;
-        private MASprite ma;
-        
-        private Texture2D background;
-        private Texture2D kirby;
+        public static Game1 Game
+        {
+            get
+            {
+                return game;
+            }
+        }
+        public Stage Stage
+        {
+            get
+            {
+                return stage;
+            }
+        }
 
-        private IController keyboard;
-        private IController gamepad;
+        public Scene Scene
+        {
+            get
+            {
+                return scenes[scene - 1];
+            }
+        }
+        public GraphicsDeviceManager Graphics
+        {
+            get
+            {
+                return graphics;
+            }
 
-        private Sprite mario;
-        private Sprite coin;
-        private Sprite star;
-        private Sprite fireFlower;
-        private Sprite superMushroom;
-        private Sprite oneUpMushroom;
+            private set
+            {
+                graphics = value;
+            }
+        }
 
- 
-        public Color fontColor { get; set; } = Color.White;
-        private SpriteFont HUDFont;
+        //private Sprite mario;
+        //private Sprite coin;
+        //private Sprite star;
+        //private Sprite fireFlower;
+        //private Sprite superMushroom;
+        //private Sprite oneUpMushroom;
+
 
 
         public Game1()
         {
-            _graphics = new GraphicsDeviceManager(this);
+            game = this;
+            stage = new Stage(this);
+            Graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
+            scenes = new List<Scene>();
+            scenes.Add(new Scene(stage));
+            scene = 1;
         }
 
         protected override void Initialize()
         {
-            // TODO: Add your initialization logic here
 
-            //-------------------------keyboard control------------------
-            keyboard = new KeyboardController();
-            keyboard.Command((int)Keys.Q, new ExitCommand(this));
-
-            // -------------------------gamepad control----------------
-            gamepad = new GamepadController(PlayerIndex.One);
-            gamepad.Command((int)Buttons.Start, new ExitCommand(this));
-
+            scenes[scene - 1].Initialize();
 
             base.Initialize();
         }
 
         protected override void LoadContent()
         {
-            _spriteBatch = new SpriteBatch(GraphicsDevice);
+            spriteBatch = new SpriteBatch(GraphicsDevice);
+            scenes[scene - 1].LoadContent();
 
-            //non ani texture load
-            background = this.Content.Load<Texture2D>("sky");
-            kirby = this.Content.Load<Texture2D>("3-2-kirby-picture");
-
-            //----------------------non animated-----------------------
-
-            //non moving non animated sprite create 
-            nmna = new NmNaSprite(kirby, new Vector2(200, 300));
-            //non mv non ani display command
-            keyboard.Command((int)Keys.W, new ShowNmNaCommand(this.nmna));
-            gamepad.Command((int)Buttons.A, new ShowNmNaCommand(nmna));
-
-            // mv non ani sprite create
-            mna = new MNaSprite(kirby, new Vector2(450, 240));
-            // mv non ani display command
-            keyboard.Command((int)Keys.E, new ShowMNaCommand(this.mna));
-            gamepad.Command((int)Buttons.X, new ShowMNaCommand(mna));
-
-            //----------------------animated texture load-------------------------------
-
-            //load animated texture
-            var skyman = Content.Load<Texture2D>("skymanRow");
-
-            //--------------------------------animated-------------------------------------
-
-            //non mv ani sprite create
-            nma = new NmASprite(skyman, 1, 8, new Vector2(100,100));
-            //non mv ani sprite display command connected
-            keyboard.Command((int)Keys.R, new ShowNmACommand(nma));
-            gamepad.Command((int)Buttons.B, new ShowNmACommand(nma));
-
-            //mv ani sprite create
-            ma = new MASprite(skyman, 1, 8, new Vector2(100,200));
-            keyboard.Command((int)Keys.T, new ShowMACommand(ma));
-            gamepad.Command((int)Buttons.Y, new ShowMACommand(ma));
-
-            //--------------------------------load font---------------------------------------
-            HUDFont = Content.Load<SpriteFont>("File");
-
-
-            mario = PlayerOneAvatarFactory.Instance.Create(this, new Vector2(100,100));
-            coin = CoinFactory.Instance.Create(this, new Vector2(150, 100));
-            star = StarFactory.Instance.Create(this, new Vector2(200, 100));
-            fireFlower = FireFlowerFactory.Instance.Create(this, new Vector2(250, 100));
-            superMushroom = SuperMushroomFactory.Instance.Create(this, new Vector2(300, 100));
-            oneUpMushroom = OneUpMushroomFactory.Instance.Create(this, new Vector2(350, 100));
+            //mario = PlayerOneAvatarFactory.Instance.Create(this, new Vector2(100,100));
+            //coin = CoinFactory.Instance.Create(this, new Vector2(150, 100));
+            //star = StarFactory.Instance.Create(this, new Vector2(200, 100));
+            //fireFlower = FireFlowerFactory.Instance.Create(this, new Vector2(250, 100));
+            //superMushroom = SuperMushroomFactory.Instance.Create(this, new Vector2(300, 100));
+            //oneUpMushroom = OneUpMushroomFactory.Instance.Create(this, new Vector2(350, 100));
 
         }
 
@@ -118,18 +103,13 @@ namespace Sprint0
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
-            keyboard.Update();
-            gamepad.Update();
+            scenes[scene - 1].Update(gameTime);
 
-            nmna.Update();
-            mna.Update();
-            nma.Update();
-            ma.Update();
-            coin.Update(gameTime);
-            star.Update(gameTime);
-            fireFlower.Update(gameTime);
-            superMushroom.Update(gameTime);
-            oneUpMushroom.Update(gameTime);
+            //coin.Update(gameTime);
+            //star.Update(gameTime);
+            //fireFlower.Update(gameTime);
+            //superMushroom.Update(gameTime);
+            //oneUpMushroom.Update(gameTime);
 
             base.Update(gameTime);
         }
@@ -137,35 +117,19 @@ namespace Sprint0
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
+            scenes[scene - 1].Draw(gameTime);
 
-            // TODO: Add your drawing code here
 
-            _spriteBatch.Begin();
+            //mario.Draw(_spriteBatch);
+            //coin.Draw(_spriteBatch);
+            //star.Draw(_spriteBatch);
+            //fireFlower.Draw(_spriteBatch);
+            //superMushroom.Draw(_spriteBatch);
+            //oneUpMushroom.Draw(_spriteBatch);
 
-            _spriteBatch.Draw(background, new Rectangle(0, 0, 800, 480), Color.White);
-            _spriteBatch.DrawString(HUDFont, "Press Q(start) for quit\nPress W(A) E(B) R(X) T(Y) to show image", new Vector2(50, 0), fontColor);
-            //_spriteBatch.Draw(earth, new Vector2(400,240),Color.White);
-            //_spriteBatch.Draw(shuttle, new Vector2(450, 240), Color.White);
-
-            nmna.Draw(_spriteBatch);
-            mna.Draw(_spriteBatch);
-            nma.Draw(_spriteBatch);
-            ma.Draw(_spriteBatch);
-            mario.Draw(_spriteBatch);
-            coin.Draw(_spriteBatch);
-            star.Draw(_spriteBatch);
-            fireFlower.Draw(_spriteBatch);
-            superMushroom.Draw(_spriteBatch);
-            oneUpMushroom.Draw(_spriteBatch);
-            
-            _spriteBatch.End();
 
             base.Draw(gameTime);
         }
 
-        public void ExitCommnad()
-        {
-            Exit();
-        }
     }
 }

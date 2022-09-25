@@ -12,4 +12,5 @@ namespace Sprint0.interfaces
 
         void Execute();
     }
+
 }

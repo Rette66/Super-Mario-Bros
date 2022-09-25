@@ -17,7 +17,7 @@ namespace Sprint0.Controller
         
         KeyboardState previousState;
 
-        public KeyboardController()
+        public KeyboardController(Game1 game)
         {
             previousState = Keyboard.GetState();        //initialize previouse state inorder to avoid multi count for one key press
         }

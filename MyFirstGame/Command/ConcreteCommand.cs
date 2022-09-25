@@ -1,5 +1,6 @@
 ﻿using Sprint0;
 using Sprint0.Sprites;
+using Sprint0.Theming;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,57 +9,29 @@ using System.Threading.Tasks;
 
 namespace Sprint0.Command
 {
-    public class ExitCommand : GameCommand
+    class ExitCommand : ScriptCommand
     {
-        public ExitCommand(Game1 receiver)
-            : base(receiver) { }
-
-        public override void Execute()
+        public ExitCommand(Script receiver)
+            : base(receiver)
         {
-            receiver.ExitCommnad();
+
         }
-    }
-
-    public class ShowNmNaCommand : NmNaCommand
-    {
-        public ShowNmNaCommand(NmNaSprite receiver)
-            : base(receiver) { }
-
         public override void Execute()
         {
-            receiver.VisibleCommand();
+            receiver.ExitCommand();
         }
+
     }
-
-    public class ShowNmACommand : NmACommand
+    class CreateState1Command : ScriptCommand
     {
-        public ShowNmACommand(NmASprite receiver)
-            : base(receiver) { }
-
-        public override void Execute()
+        public CreateState1Command(Script receiver)
+            : base(receiver)
         {
-            receiver.VisibleCommand();
+
         }
-    }
-    public class ShowMNaCommand : MNaCommand
-    {
-        public ShowMNaCommand(MNaSprite receiver)
-            : base(receiver) { }
-
         public override void Execute()
         {
-            receiver.VisibleCommand();
-        }
-    }
-
-    public class ShowMACommand : MACommand
-    {
-        public ShowMACommand(MASprite receiver)
-            : base(receiver) { }
-
-        public override void Execute()
-        {
-            receiver.VisibleCommand();
+            receiver.CreateState1Command();
         }
     }
 }

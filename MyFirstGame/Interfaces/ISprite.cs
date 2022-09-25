@@ -10,7 +10,5 @@ namespace Sprint0.interfaces
     {
         void Draw(SpriteBatch spriteBatch);
         void Update(GameTime gametime);
-        int Width();
-        int Height();
     }
 }
