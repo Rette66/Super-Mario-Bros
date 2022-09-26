@@ -40,7 +40,7 @@ namespace Sprint0.Theming
                 if (controller is KeyboardController)
                 {
                     controller.Command((int)Keys.Q, new ExitCommand(this));
-                    controller.Command((int)Keys.W, new CreateState1Command(this));
+                    controller.Command((int)Keys.W, new VisibleCommand(QuestionBlockFactory.Instance.Create(Game, new Vector2(100, 200))));
                 }
             }
         }
@@ -54,5 +54,6 @@ namespace Sprint0.Theming
 
             scene.Add(QuestionBlockFactory.Instance.Create(Game, new Vector2(100,200)));
         }
+       
     }
 }

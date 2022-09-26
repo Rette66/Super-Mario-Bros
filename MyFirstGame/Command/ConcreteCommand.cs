@@ -34,4 +34,16 @@ namespace Sprint0.Command
             receiver.CreateState1Command();
         }
     }
+    class VisibleCommand : SpriteCommand
+    {
+        public VisibleCommand(Sprite receiver)
+            : base(receiver)
+        {
+
+        }
+        public override void Execute()
+        {
+            receiver.VisibleCommand();
+        }
+    }
 }

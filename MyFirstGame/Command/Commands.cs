@@ -22,6 +22,17 @@ namespace Sprint0.Command
         public abstract void Execute();
     }
 
+    public abstract class SpriteCommand : ICommand
+    {
+        protected Sprite receiver;
+
+        public SpriteCommand(Sprite receiver)
+        {
+            this.receiver = receiver;
+        }
+        public abstract void Execute();
+    }
+
 }
 
 

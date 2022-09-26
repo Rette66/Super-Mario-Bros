@@ -63,8 +63,7 @@ namespace Sprint0.Theming
             spriteBatch.Begin();
 
             spriteBatch.Draw(background, new Rectangle(0, 0, 800, 480), Color.White);
-            foreach (Sprite sprite in listSprites)
-                sprite.Draw(spriteBatch);
+            
             spriteBatch.End();
 
 

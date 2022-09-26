@@ -13,7 +13,7 @@ namespace Sprint0.Sprites
      class MarioSprite :Sprite
     {
         public MarioSprite(Game1 game, Vector2 position)
-            : base (game.Content.Load<Texture2D>("small-standing-mario"), position,new Vector2(0,0), true,  false,0,new Point(1,1 ), new Point(18,24))
+            : base (game.Content.Load<Texture2D>("small-standing-mario"), position,new Vector2(0,0), false,0,new Point(1,1 ), new Point(18,24))
         {
 
         }
@@ -22,7 +22,7 @@ namespace Sprint0.Sprites
     class CoinSprite : Sprite
     {
         public CoinSprite(Game1 game, Vector2 position)
-            : base(game.Content.Load<Texture2D>("Coin"), position, new Vector2(0, 0), true, true,50, new Point(6,1), new(33,28))
+            : base(game.Content.Load<Texture2D>("Coin"), position, new Vector2(0, 0), true, 50, new Point(6,1), new(33,28))
         {
 
         }
@@ -33,7 +33,7 @@ namespace Sprint0.Sprites
     class StarSprite : Sprite
     {
         public StarSprite(Game1 game, Vector2 position)
-            : base(game.Content.Load<Texture2D>("StarA"), position, new Vector2(0, 0), true, true, 100, new Point(4, 1), new(21, 16))
+            : base(game.Content.Load<Texture2D>("StarA"), position, new Vector2(0, 0), true, 100, new Point(4, 1), new(21, 16))
         {
 
         }
@@ -43,7 +43,7 @@ namespace Sprint0.Sprites
     class FireFlowerSprite : Sprite
     {
         public FireFlowerSprite(Game1 game, Vector2 position)
-            : base(game.Content.Load<Texture2D>("FireFlowerA"), position, new Vector2(0, 0), true, true, 100, new Point(2, 1), new(58/2, 30))
+            : base(game.Content.Load<Texture2D>("FireFlowerA"), position, new Vector2(0, 0), true, 100, new Point(2, 1), new(58/2, 30))
         {
 
         }
@@ -53,7 +53,7 @@ namespace Sprint0.Sprites
     class SuperMushroomSprite : Sprite
     {
         public SuperMushroomSprite(Game1 game, Vector2 position)
-            : base(game.Content.Load<Texture2D>("SuperMushroom"), position, new Vector2(0, 0), true, false, 100, new Point(1, 1), new(30, 30))
+            : base(game.Content.Load<Texture2D>("SuperMushroom"), position, new Vector2(0, 0), false, 100, new Point(1, 1), new(30, 30))
         {
 
         }
@@ -63,7 +63,7 @@ namespace Sprint0.Sprites
     class OneUpMushroomSprite : Sprite
     {
         public OneUpMushroomSprite(Game1 game, Vector2 position)
-            : base(game.Content.Load<Texture2D>("1UpMushroom"), position, new Vector2(0, 0), true, false, 100, new Point(1, 1), new(30, 30))
+            : base(game.Content.Load<Texture2D>("1UpMushroom"), position, new Vector2(0, 0), false, 100, new Point(1, 1), new(30, 30))
         {
 
         }
@@ -71,7 +71,7 @@ namespace Sprint0.Sprites
     class QuestionBlockSprite : Sprite
     {
         public QuestionBlockSprite(Game1 game, Vector2 position)
-            : base(game.Content.Load<Texture2D>("questionBlock"), position, new Vector2(0, 0), true, true, 300, new Point(3, 1), new(33, 31))
+            : base(game.Content.Load<Texture2D>("questionBlock"), position, new Vector2(0, 0), true, 300, new Point(3, 1), new(33, 31))
         {
 
         }
@@ -79,7 +79,7 @@ namespace Sprint0.Sprites
     class FloorBlockSprite : Sprite
     {
         public FloorBlockSprite(Game1 game, Vector2 position)
-            : base(game.Content.Load<Texture2D>("floorBlock"), position, new Vector2(0, 0), true, false, 100, new Point(1, 1), new(30, 30))
+            : base(game.Content.Load<Texture2D>("floorBlock"), position, new Vector2(0, 0), false, 100, new Point(1, 1), new(30, 30))
         {
 
         }
@@ -87,7 +87,7 @@ namespace Sprint0.Sprites
     class UsedBlockSprite : Sprite
     {
         public UsedBlockSprite(Game1 game, Vector2 position)
-            : base(game.Content.Load<Texture2D>("usedBlock"), position, new Vector2(0, 0), true, false, 100, new Point(1, 1), new(30, 30))
+            : base(game.Content.Load<Texture2D>("usedBlock"), position, new Vector2(0, 0), false, 100, new Point(1, 1), new(30, 30))
         {
 
         }
@@ -95,7 +95,7 @@ namespace Sprint0.Sprites
     class BrickBlockSprite : Sprite
     {
         public BrickBlockSprite(Game1 game, Vector2 position)
-            : base(game.Content.Load<Texture2D>("brickblock"), position, new Vector2(0, 0), true, false, 100, new Point(1, 1), new(30, 30))
+            : base(game.Content.Load<Texture2D>("brickblock"), position, new Vector2(0, 0), false, 100, new Point(1, 1), new(30, 30))
         {
 
         }
@@ -104,7 +104,7 @@ namespace Sprint0.Sprites
     class StairBlockSprite : Sprite
     {
         public StairBlockSprite(Game1 game, Vector2 position)
-            : base(game.Content.Load<Texture2D>("stairblock"), position, new Vector2(0, 0), true, false, 100, new Point(1, 1), new(30, 30))
+            : base(game.Content.Load<Texture2D>("stairblock"), position, new Vector2(0, 0), false, 100, new Point(1, 1), new(30, 30))
         {
 
         }

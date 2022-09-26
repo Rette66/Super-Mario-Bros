@@ -18,7 +18,7 @@ namespace Sprint0.Sprites
         Vector2 speed;
 
 
-        bool isVisible;
+        public bool isVisible = true;
 
 
         bool isAnimated;
@@ -29,13 +29,12 @@ namespace Sprint0.Sprites
         int delayTime;
         
 
-        public Sprite(Texture2D texture, Vector2 position,Vector2 speed, bool isVisible,
+        public Sprite(Texture2D texture, Vector2 position,Vector2 speed,
             bool isAnimated, int delayTime, Point animatedSpriteSize, Point frameSize)
         {
             this.texture = texture;
             this.position = position;
             this.speed = speed;
-            this.isVisible = isVisible;
             this.isAnimated = isAnimated;
             this.delayTime = delayTime;
             this.animatedSpriteSize = animatedSpriteSize;
@@ -77,10 +76,17 @@ namespace Sprint0.Sprites
 
         public void Draw(SpriteBatch batch)
         {
-            batch.Draw(texture, position,
+            if (isVisible)
+            {
+                batch.Draw(texture, position,
                 new Rectangle(currentFrame.X * frameSize.X, currentFrame.Y * frameSize.Y,
-                frameSize.X, frameSize.Y), 
+                frameSize.X, frameSize.Y),
                 Color.White, 0, Vector2.Zero, 1, SpriteEffects.None, 0);
+            }
+        }
+        public void VisibleCommand()
+        {
+            isVisible = !isVisible;
         }
 
     }
