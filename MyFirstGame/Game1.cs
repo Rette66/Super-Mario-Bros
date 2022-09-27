@@ -37,9 +37,13 @@ namespace Sprint0
 
         private Texture2D marioLeft;
         private Texture2D marioRight;
+        private Texture2D marioStandingLeft;
+        private Texture2D marioStandingRight;
         private MarioSprite marioSpriteLeft;
-        private MarioSprite marioSpriteRight;
-        
+        private Texture2D marioJumpingLeft;
+        private Texture2D marioJumpingRight;
+
+
 
         public Game1()
         {
@@ -78,8 +82,8 @@ namespace Sprint0
             //non moving non animated sprite create 
             nmna = new NmNaSprite(kirby, new Vector2(200, 300));
             //non mv non ani display command
-            keyboard.Command((int)Keys.W, new ShowNmNaCommand(this.nmna));
-            gamepad.Command((int)Buttons.A, new ShowNmNaCommand(nmna));
+            //keyboard.Command((int)Keys.W, new ShowNmNaCommand(this.nmna));
+            //gamepad.Command((int)Buttons.A, new ShowNmNaCommand(nmna));
 
             // mv non ani sprite create
             mna = new MNaSprite(kirby, new Vector2(450, 240));
@@ -115,13 +119,22 @@ namespace Sprint0
             //---------------------------Mario Load------------------------------------------
             marioLeft = this.Content.Load<Texture2D>("MarioLeft");
             marioRight = this.Content.Load<Texture2D>("marioRight");
+            marioStandingLeft = this.Content.Load<Texture2D>("MarioStandingLeft");
+            marioStandingRight = this.Content.Load<Texture2D>("MarioStandingRight");
+            marioJumpingLeft = this.Content.Load<Texture2D>("MarioJumpingLeft");
+            marioJumpingRight = this.Content.Load<Texture2D>("MarioJumpingRight");
 
-            marioSpriteLeft = new MarioSprite(marioLeft, 1, 6, new Vector2(100, 100), marioRight);
+            marioSpriteLeft = new MarioSprite(marioLeft, 1, 6, new Vector2(100, 100), marioRight, 1, 6, marioStandingLeft, marioStandingRight, 
+                marioJumpingLeft, 1,6, marioJumpingRight,1,6);
 
 
             keyboard.Command((int)Keys.A, new ExeMRCommand(marioSpriteLeft));
+            gamepad.Command((int)Buttons.DPadLeft, new ExeMRCommand(marioSpriteLeft));
             keyboard.Command((int)Keys.D, new ExeMLCommand(marioSpriteLeft));
-            keyboard.Command((int)Keys.H, new ExeJumpCommand(marioSpriteLeft));
+            gamepad.Command((int)Buttons.DPadRight, new ExeMLCommand(marioSpriteLeft));
+            keyboard.Command((int)Keys.W, new ExeJumpCommand(marioSpriteLeft));
+            gamepad.Command((int)Buttons.A, new ExeJumpCommand(marioSpriteLeft));
+
 
             //load font
             HUDFont = Content.Load<SpriteFont>("File");
@@ -169,7 +182,15 @@ namespace Sprint0
             goombaSprite.Draw(_spriteBatch);
             if (Keyboard.GetState().IsKeyDown(Keys.D) || Keyboard.GetState().IsKeyDown(Keys.A))
             {
-                marioSpriteLeft.movementDir = Keyboard.GetState();
+                if (Keyboard.GetState().IsKeyDown(Keys.D))
+                {
+                    marioSpriteLeft.direction = "right";
+                }
+                if (Keyboard.GetState().IsKeyDown(Keys.A))
+                {
+                    marioSpriteLeft.direction = "left";
+                }
+                //marioSpriteLeft.movementDir = Keyboard.GetState();
                 marioSpriteLeft.pressed = true;
                 marioSpriteLeft.Draw(_spriteBatch);
             }
