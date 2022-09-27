@@ -61,4 +61,36 @@ namespace Sprint0.Command
             receiver.VisibleCommand();
         }
     }
+
+    public class ExeMRCommand : MRCommand
+    {
+        public ExeMRCommand(MarioSprite reciever)
+            : base(reciever) { }
+
+        public override void Execute()
+        {
+            receiver.MoveRight();
+        }
+    }
+
+    public class ExeMLCommand : MLCommand
+    {
+        public ExeMLCommand(MarioSprite reciever)
+            : base(reciever) { }
+
+        public override void Execute()
+        {
+            receiver.MoveLeft();
+        }
+    }
+    public class ExeJumpCommand : JumpCommand
+    {
+        public ExeJumpCommand(MarioSprite reciever)
+            : base(reciever) { }
+
+        public override void Execute()
+        {
+            receiver.Jump();
+        }
+    }
 }

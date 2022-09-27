@@ -72,6 +72,40 @@ namespace Sprint0.Command
         public abstract void Execute();
     }
 
+    public abstract class MRCommand : ICommand
+    {
+        protected MarioSprite receiver;
+
+        protected MRCommand(MarioSprite reciever)
+        {
+            this.receiver = reciever;
+        }
+        public abstract void Execute();
+
+    }
+
+    public abstract class MLCommand : ICommand
+    {
+        protected MarioSprite receiver;
+
+        protected MLCommand(MarioSprite reciever)
+        {
+            this.receiver = reciever;
+        }
+        public abstract void Execute();
+    }
+
+    public abstract class JumpCommand : ICommand
+    {
+        protected MarioSprite receiver;
+
+        protected JumpCommand(MarioSprite reciever)
+        {
+            this.receiver = reciever;
+        }
+        public abstract void Execute();
+    }
+
 }
 
 

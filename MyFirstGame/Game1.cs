@@ -28,6 +28,18 @@ namespace Sprint0
         public Color fontColor { get; set; } = Color.White;
         private SpriteFont HUDFont;
 
+        //-------enemies---------
+        private Texture2D koopaTroopa;
+        private KoopaTroopaSprite kt;
+
+        private Texture2D goomba;
+        private GoombaSprite goombaSprite;
+
+        private Texture2D marioLeft;
+        private Texture2D marioRight;
+        private MarioSprite marioSpriteLeft;
+        private MarioSprite marioSpriteRight;
+        
 
         public Game1()
         {
@@ -51,6 +63,7 @@ namespace Sprint0
 
             base.Initialize();
         }
+
 
         protected override void LoadContent()
         {
@@ -92,6 +105,24 @@ namespace Sprint0
             keyboard.Command((int)Keys.T, new ShowMACommand(ma));
             gamepad.Command((int)Buttons.Y, new ShowMACommand(ma));
 
+            //-----------------------------Ben-Enemies load----------------------------------
+            koopaTroopa = this.Content.Load<Texture2D>("koopaTroopa");
+            kt = new KoopaTroopaSprite(koopaTroopa, 1, 2, new Vector2(600, 100));
+
+            goomba = this.Content.Load<Texture2D>("goomba");
+            goombaSprite = new GoombaSprite(goomba, 1, 2, new Vector2(500, 100));
+
+            //---------------------------Mario Load------------------------------------------
+            marioLeft = this.Content.Load<Texture2D>("MarioLeft");
+            marioRight = this.Content.Load<Texture2D>("marioRight");
+
+            marioSpriteLeft = new MarioSprite(marioLeft, 1, 6, new Vector2(100, 100), marioRight);
+
+
+            keyboard.Command((int)Keys.A, new ExeMRCommand(marioSpriteLeft));
+            keyboard.Command((int)Keys.D, new ExeMLCommand(marioSpriteLeft));
+            keyboard.Command((int)Keys.H, new ExeJumpCommand(marioSpriteLeft));
+
             //load font
             HUDFont = Content.Load<SpriteFont>("File");
 
@@ -110,7 +141,9 @@ namespace Sprint0
             mna.Update();
             nma.Update();
             ma.Update();
-
+            kt.UpdateFrame(gameTime);
+            goombaSprite.UpdateFrame(gameTime);
+            marioSpriteLeft.UpdateFrame(gameTime);
 
             base.Update(gameTime);
         }
@@ -132,6 +165,20 @@ namespace Sprint0
             mna.Draw(_spriteBatch);
             nma.Draw(_spriteBatch);
             ma.Draw(_spriteBatch);
+            kt.Draw(_spriteBatch);
+            goombaSprite.Draw(_spriteBatch);
+            if (Keyboard.GetState().IsKeyDown(Keys.D) || Keyboard.GetState().IsKeyDown(Keys.A))
+            {
+                marioSpriteLeft.movementDir = Keyboard.GetState();
+                marioSpriteLeft.pressed = true;
+                marioSpriteLeft.Draw(_spriteBatch);
+            }
+            else
+            {
+                marioSpriteLeft.pressed = false;
+                marioSpriteLeft.movementDir = Keyboard.GetState();
+                marioSpriteLeft.Draw(_spriteBatch);
+            }
 
             _spriteBatch.End();
 
