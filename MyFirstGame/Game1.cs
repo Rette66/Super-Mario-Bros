@@ -7,6 +7,7 @@ using Sprint0.Controller;
 using Sprint0.interfaces;
 using Sprint0.Mario;
 using Sprint0.Block;
+using Sprint0.Enemy;
 
 namespace Sprint0
 {
@@ -30,7 +31,10 @@ namespace Sprint0
         private BrickBlock brickBlock;
         private StairBlock stairBlock;
         private BrickBlock hiddenBrickBlock;
- 
+
+        private Goomba goomba;
+        private KoopaTroopa koopaTroopa;
+
         public Color fontColor { get; set; } = Color.White;
         private SpriteFont HUDFont;
 
@@ -55,6 +59,8 @@ namespace Sprint0
             stairBlock = new StairBlock(this, new Vector2(300, 200));
             hiddenBrickBlock = new BrickBlock(this, new Vector2(100, 300));
             hiddenBrickBlock.Hide();
+            goomba = new Goomba(this, 1, 2, new Vector2(500, 100));
+            koopaTroopa = new KoopaTroopa(this, 1, 2, new Vector2(600, 100));
 
             //-------------------------keyboard control------------------
             keyboard = new KeyboardController();
@@ -65,6 +71,7 @@ namespace Sprint0
             keyboard.Command((int)Keys.W, new QuestionBlockBump(questionBlock));
             keyboard.Command((int)Keys.B, new BrickBlockBump(brickBlock));
             keyboard.Command((int)Keys.H, new BrickBlockChangeVisible(hiddenBrickBlock));
+            
 
             // -------------------------gamepad control----------------
             gamepad = new GamepadController(PlayerIndex.One);
@@ -106,6 +113,9 @@ namespace Sprint0
             stairBlock.Update(gameTime);
             hiddenBrickBlock.Update(gameTime);
 
+            goomba.UpdateFrame(gameTime);
+            koopaTroopa.UpdateFrame(gameTime);
+
             base.Update(gameTime);
         }
 
@@ -128,6 +138,8 @@ namespace Sprint0
             stairBlock.Draw(_spriteBatch);
             floorBlock.Draw(_spriteBatch);
             hiddenBrickBlock.Draw(_spriteBatch);
+            goomba.Draw(_spriteBatch);
+            koopaTroopa.Draw(_spriteBatch);
 
             _spriteBatch.End();
 

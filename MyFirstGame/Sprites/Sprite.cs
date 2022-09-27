@@ -145,6 +145,19 @@ namespace Sprint0.Sprites
             }
         }
 
+        
+        public void DrawEnemy(SpriteBatch batch, int columns, int currentFrame)
+        {
+            int width = frameSize.X;
+            int height = frameSize.Y;
+            int row = currentFrame / columns;
+            int column = currentFrame % columns;
+
+            Rectangle sourceRectangle = new Rectangle(width * column, height * row, width, height);
+            Rectangle destinationRectangle = new Rectangle((int)position.X, (int)position.Y, width, height);
+            batch.Draw(texture, destinationRectangle, sourceRectangle, Color.White);
+
+        }
 
 
         public int Height()

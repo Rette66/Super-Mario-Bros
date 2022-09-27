@@ -38,6 +38,17 @@ namespace Sprint0.Sprites
         public abstract ISprite CreateBlock(Game1 game, Vector2 postion);
     }
 
+    abstract class EnemyFactory
+    {
+        protected Random random;
+
+        protected EnemyFactory()
+        {
+            random = new Random(DateTime.Now.Millisecond);
+        }
+        public abstract ISprite CreateEnemy(Game1 game, Vector2 position);
+    }
+
 
     // player one factory or mario factory
     // generate a new mario sprite
@@ -332,4 +343,47 @@ namespace Sprint0.Sprites
         }
     }
 
+    class GoombaFactory : EnemyFactory
+    {
+        private static EnemyFactory instance;
+
+        public static EnemyFactory Instance
+        {
+            get
+            {
+                if (instance == null)
+                {
+                    instance = new GoombaFactory();
+                }
+                return instance;
+            }
+        }
+
+        public override ISprite CreateEnemy(Game1 game, Vector2 pos)
+        {
+            return new GoombaSprite(game, pos);
+        }
+    }
+
+    class KoopaTroopaFactory : EnemyFactory
+    {
+        private static EnemyFactory instance;
+
+        public static EnemyFactory Instance
+        {
+            get
+            {
+                if (instance == null)
+                {
+                    instance = new KoopaTroopaFactory();
+                }
+                return instance;
+            }
+        }
+
+        public override ISprite CreateEnemy(Game1 game, Vector2 pos)
+        {
+            return new KoopaTroopaSprite(game, pos);
+        }
+    }
 }

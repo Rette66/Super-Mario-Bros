@@ -19,6 +19,24 @@ namespace Sprint0.Sprites
         }
     }
 
+    class GoombaSprite : Sprite
+    {
+        public GoombaSprite(Game1 game, Vector2 position)
+            : base(game.Content.Load<Texture2D>("goomba"), position, new Vector2(0, 0), true, true, 100, Point.Zero, new Point(16, 21))
+            {
+
+            }
+    }
+
+    class KoopaTroopaSprite : Sprite
+    {
+        public KoopaTroopaSprite(Game1 game, Vector2 position)
+            : base(game.Content.Load<Texture2D>("koopaTroopa"), position, new Vector2(0, 0), true, true, 100, Point.Zero, new Point(29, 25))
+        {
+
+        }
+    }
+
 
     class FireMarioStandingSprite : Sprite
     {
