@@ -106,6 +106,17 @@ namespace Sprint0.Command
         public abstract void Execute();
     }
 
+    public abstract class CrouchCommand : ICommand
+    {
+        protected MarioSprite receiver;
+
+        protected CrouchCommand(MarioSprite reciever)
+        {
+            this.receiver = reciever;
+        }
+        public abstract void Execute();
+    }
+
 }
 
 

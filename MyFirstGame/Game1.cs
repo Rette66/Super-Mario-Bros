@@ -42,6 +42,7 @@ namespace Sprint0
         private MarioSprite marioSpriteLeft;
         private Texture2D marioJumpingLeft;
         private Texture2D marioJumpingRight;
+        private Texture2D marioCrouching;
 
 
 
@@ -123,9 +124,10 @@ namespace Sprint0
             marioStandingRight = this.Content.Load<Texture2D>("MarioStandingRight");
             marioJumpingLeft = this.Content.Load<Texture2D>("MarioJumpingLeft");
             marioJumpingRight = this.Content.Load<Texture2D>("MarioJumpingRight");
+            marioCrouching = this.Content.Load <Texture2D>("MarioCrouching");
 
             marioSpriteLeft = new MarioSprite(marioLeft, 1, 6, new Vector2(100, 100), marioRight, 1, 6, marioStandingLeft, marioStandingRight, 
-                marioJumpingLeft, 1,6, marioJumpingRight,1,6);
+                marioJumpingLeft, 1,6, marioJumpingRight,1,6, marioCrouching);
 
 
             keyboard.Command((int)Keys.A, new ExeMRCommand(marioSpriteLeft));
@@ -134,6 +136,8 @@ namespace Sprint0
             gamepad.Command((int)Buttons.DPadRight, new ExeMLCommand(marioSpriteLeft));
             keyboard.Command((int)Keys.W, new ExeJumpCommand(marioSpriteLeft));
             gamepad.Command((int)Buttons.A, new ExeJumpCommand(marioSpriteLeft));
+            keyboard.Command((int)Keys.S, new ExeCrouchCommand(marioSpriteLeft));
+            gamepad.Command((int)Buttons.DPadDown, new ExeCrouchCommand(marioSpriteLeft));
 
 
             //load font

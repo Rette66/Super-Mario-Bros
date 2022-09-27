@@ -50,9 +50,12 @@ namespace Sprint0.Sprites
         private int marioJumpingLeftRows;
         private int marioJumpingLeftColumns;
 
+        private Texture2D marioCrouching;
+        private bool isCrouch;
+
         public MarioSprite(Texture2D texture, int rows, int columns, Vector2 vector2, Texture2D marioRightMain, int rows2, int columns2, 
             Texture2D marioStandingLeftMain, Texture2D marioStandingRightMain, Texture2D marioJumpingLeftMain, int rows3, int columns3,
-            Texture2D marioJumpingRightMain, int rows4, int columns4)
+            Texture2D marioJumpingRightMain, int rows4, int columns4, Texture2D marioCrouchingMain)
         {
             mario = texture;
             Rows = rows;
@@ -79,6 +82,9 @@ namespace Sprint0.Sprites
             marioJumpingRight = marioJumpingRightMain;
             marioJumpingRightRows = rows4;
             marioJumpingRightColumns = columns4;
+
+            marioCrouching = marioCrouchingMain;
+            isCrouch = false;
         }
 
         public void Update()
@@ -186,6 +192,11 @@ namespace Sprint0.Sprites
                 }
                 
             }
+
+            else if (isCrouch)
+            {
+                spriteBatch.Draw(marioCrouching, position, Color.White);
+            }
             else if(direction.Equals("left"))
             {
                 spriteBatch.Draw(marioStandingLeft,position, Color.White);
@@ -249,7 +260,10 @@ namespace Sprint0.Sprites
             }
         }
 
-
+        public void Crouch()
+        {
+            isCrouch = !isCrouch;
+        }
 
     }
 }

@@ -93,4 +93,15 @@ namespace Sprint0.Command
             receiver.Jump();
         }
     }
+
+    public class ExeCrouchCommand : CrouchCommand
+    {
+        public ExeCrouchCommand(MarioSprite reciever)
+            : base(reciever) { }
+
+        public override void Execute()
+        {
+            receiver.Crouch();
+        }
+    }
 }

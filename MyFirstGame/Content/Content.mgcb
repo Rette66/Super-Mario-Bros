@@ -37,18 +37,6 @@
 /processorParam:TextureFormat=Color
 /build:../../../pics/MarioStandingLeft.png;MarioStandingLeft.png
 
-#begin ../../../pics/MarioStandingLeft.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:../../../pics/MarioStandingLeft.png;MarioStandingLeft.png
-
 #begin ../../../pics/MarioStandingRight.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -139,6 +127,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:MAMario.gif
+
+#begin MarioCrouching.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:MarioCrouching.png
 
 #begin MarioJumpingLeft.png
 /importer:TextureImporter
