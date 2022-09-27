@@ -13,6 +13,7 @@ namespace Sprint0
     public class Game1 : Game
     {
         //new version ray
+        //Ben Update
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
 
