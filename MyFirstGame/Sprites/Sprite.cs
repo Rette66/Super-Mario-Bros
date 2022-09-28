@@ -53,7 +53,7 @@ namespace Sprint0.Sprites
             endHeight = position.Y - 60;
             currentFrame = new Point(0, 0);
         }
-        
+
         public void Bump(GameTime gameTime)
         {
             if (isBump && !isSuperMario)
@@ -61,11 +61,12 @@ namespace Sprint0.Sprites
                 position.Y -= velocity;
                 if (position.Y < bumpHeight)
                 {
-                    velocity = -velocity;
+                    velocity = -4f;
                 }
                 if (position.Y > originHight)
                 {
                     velocity = 0;
+                    position.Y = (float)originHight;
                     isBump = false;
                 }
             }

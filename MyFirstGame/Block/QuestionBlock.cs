@@ -26,15 +26,15 @@ namespace Sprint0.Block
         {
             this.game = game;
             this.position = position;
-            questionBlock = QuestionBlockFactory.Instance.CreateBlock(game, position); 
+            questionBlock = QuestionBlockFactory.Instance.CreateBlock(game, position);
             usedBlock = UsedBlockFactory.Instance.CreateBlock(game, position);
-            hiddenItem = CoinFactory.Instance.CreateBlock(game, position);
+            hiddenItem = CoinFactory.Instance.Create(game, position);
             hiddenItem.HideSprite();
             currentBlock = questionBlock;
 
         }
 
-        public void ChangeToUsedBlock ()
+        public void ChangeToUsedBlock()
         {
             currentBlock = usedBlock;
             currentBlock.IsBump();
@@ -58,7 +58,7 @@ namespace Sprint0.Block
         {
             hiddenItem.Draw(batch);
             currentBlock.Draw(batch);
-            
+
         }
 
     }

@@ -162,6 +162,11 @@ namespace Sprint0
             
 
             mario.Draw(_spriteBatch, standingMario);
+            fireFlower.Draw(_spriteBatch);
+            coin.Draw(_spriteBatch);
+            superMushroom.Draw(_spriteBatch);
+            oneUpMushroom.Draw(_spriteBatch);
+            star.Draw(_spriteBatch);
             questionBlock.Draw(_spriteBatch);
             usedBlock.Draw(_spriteBatch); 
             brickBlock.Draw(_spriteBatch); 

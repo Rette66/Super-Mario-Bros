@@ -443,6 +443,14 @@ namespace Sprint0.Sprites
         }
     }
 
+    abstract class SpriteFactory
+    {
+        protected SpriteFactory()
+        {
+
+        }
+        public abstract ISprite Create(Game1 game, Vector2 pos);
+    }
 
     /*FireFlower sprite*/
     class FireFlowerFactory : SpriteFactory
