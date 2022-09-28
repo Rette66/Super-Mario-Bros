@@ -34,7 +34,7 @@ namespace Sprint0.Sprites
         public bool isSuperMario = false;
         public double bumpHeight;
         public double originHight;
-        public double h;
+        public double endHeight;
 
 
 
@@ -50,8 +50,8 @@ namespace Sprint0.Sprites
             this.animatedSpriteSize = animatedSpriteSize;
             bumpHeight = position.Y - 25;
             originHight = position.Y;
-            h = position.Y - 60;
-            currentFrame = new Point(0,0);
+            endHeight = position.Y - 60;
+            currentFrame = new Point(0, 0);
         }
         
         public void Bump(GameTime gameTime)
@@ -66,6 +66,7 @@ namespace Sprint0.Sprites
                 if (position.Y > originHight)
                 {
                     velocity = 0;
+                    isBump = false;
                 }
             }
         }
@@ -75,11 +76,11 @@ namespace Sprint0.Sprites
             if (isAppear)
             {
                 
-                if (position.Y > h)
+                if (position.Y > endHeight)
                 {
                     position.Y -= velocity;
                 }
-                if(position.Y < h+38)
+                if(position.Y <endHeight +38)
                 {
                     velocity = 0;
                 }
@@ -96,6 +97,10 @@ namespace Sprint0.Sprites
                 if (horizonVelocity > 0)
                 {
                     horizonVelocity -= 1f;
+                }
+                else if (horizonVelocity < 0)
+                {
+                    horizonVelocity += 1f;
                 }
             }
         }
@@ -178,6 +183,7 @@ namespace Sprint0.Sprites
         public void IsBump()
         {
             isBump = true;
+            velocity = 4f;
         }
 
         public void IsAppear()

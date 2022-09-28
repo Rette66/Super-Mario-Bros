@@ -8,6 +8,7 @@ using Sprint0.interfaces;
 using Sprint0.Mario;
 using Sprint0.Block;
 using Sprint0.Enemy;
+using Sprint0.Items;
 
 namespace Sprint0
 {
@@ -25,6 +26,11 @@ namespace Sprint0
         private IController gamepad;
 
         private MarioAvatar mario;
+        private Coin coin;
+        private Star star;
+        private FireFlower fireFlower;
+        private SuperMushroom superMushroom;
+        private OneUpMushroom oneUpMushroom;
         private QuestionBlock questionBlock;
         private UsedBlock usedBlock;
         private FloorBlock floorBlock;
@@ -54,6 +60,11 @@ namespace Sprint0
 
             //-------------------------mario initial----------------------
             mario = new MarioAvatar(this, new Vector2(100, 100));
+            fireFlower = new FireFlower(this, new Vector2(150, 100));
+            coin = new Coin(this, new Vector2(200, 100));
+            superMushroom = new SuperMushroom(this, new Vector2(250, 100));
+            oneUpMushroom = new OneUpMushroom(this, new Vector2(300, 100));
+            star = new Star(this, new Vector2(350, 100));
             questionBlock = new QuestionBlock(this, new Vector2(100, 200));
             usedBlock = new UsedBlock(this, new Vector2(150, 200));
             floorBlock = new FloorBlock(this, new Vector2(200, 200));
@@ -127,7 +138,11 @@ namespace Sprint0
             brickBlock.Update(gameTime);
             stairBlock.Update(gameTime);
             hiddenBrickBlock.Update(gameTime);
-
+            fireFlower.Update(gameTime);
+            coin.Update(gameTime);
+            superMushroom.Update(gameTime);
+            oneUpMushroom.Update(gameTime);
+            star.Update(gameTime);
             goomba.UpdateFrame(gameTime);
             koopaTroopa.UpdateFrame(gameTime);
 
