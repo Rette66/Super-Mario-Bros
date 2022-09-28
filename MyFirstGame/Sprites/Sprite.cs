@@ -152,10 +152,6 @@ namespace Sprint0.Sprites
             int row = currentFrame / columns;
             int column = currentFrame % columns;
 
-            //Debug.WriteLine(width + " " + height);
-            //Debug.WriteLine(currentFrame);
-            //Debug.WriteLine(row + " " + column);
-            //Debug.WriteLine((int)position.X + " " + (int)position.Y);
 
             Rectangle sourceRectangle = new Rectangle(width * column, height * row, width, height);
             Rectangle destinationRectangle = new Rectangle((int)position.X, (int)position.Y, width, height);

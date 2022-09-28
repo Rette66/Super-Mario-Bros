@@ -59,7 +59,6 @@ namespace Sprint0.Mario
 
         public void walkingLeft()
         {
-            Debug.WriteLine(isLeft.ToString());
             isLeft = true;
             isRight = false;
             isCrouch = false;

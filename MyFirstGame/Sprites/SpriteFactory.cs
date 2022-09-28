@@ -77,7 +77,6 @@ namespace Sprint0.Sprites
         {
             if (dir.Equals("right"))
             {
-                Debug.WriteLine("right animation");
                 return new NormalMarioWalkingRightSprite(game, position);
             }
             else
@@ -126,7 +125,6 @@ namespace Sprint0.Sprites
         {
             if (dir.Equals("right"))
             {
-                Debug.WriteLine("right animation");
                 return new FireMarioWalkingRightSprite(game, position);
             }
             else
