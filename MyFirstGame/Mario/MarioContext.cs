@@ -88,31 +88,41 @@ namespace Sprint0.Mario
             isRight = false;
         }
 
+
         public void ChangeToNormal()
         {
+            lifecount = 1;
             isSuperMario = false;
             currentState = new NormalMario(this);
-        }
-        public void ChangeToFire()
-        {
-            isSuperMario = false;
-            if (lifecount<3 && lifecount>0)
-                lifecount++;
-            currentState = new FireMario(this);
         }
         public void ChangeToSuper()
         {
             isSuperMario = true;
-            if (lifecount<3 && lifecount>0)
-                lifecount++;
+            lifecount = 2;
             currentState = new SuperMario(this);
-            
+        }
+        public void ChangeToFire()
+        {
+            isSuperMario = false;
+            lifecount = 3;
+            currentState = new FireMario(this);
         }
         public void TakeDamage()
         {
+            isSuperMario = false;
             lifecount--;
-            if (lifecount <= 0)
-                currentState = new DeadMario(this);
+            switch (lifecount)
+            {
+                case 0:
+                    currentState = new DeadMario(this);
+                    break;
+                case 1:
+                    currentState = new NormalMario(this);
+                    break;
+                case 2:
+                    currentState = new SuperMario(this);
+                    break;
+            }
         }
 
 

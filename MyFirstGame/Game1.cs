@@ -85,15 +85,29 @@ namespace Sprint0
             keyboard.Command((int)Keys.B, new BrickBlockBump(brickBlock));
             keyboard.Command((int)Keys.H, new BrickBlockChangeVisible(hiddenBrickBlock));
             keyboard.Command((int)Keys.A, new MarioWalkingLeft(mario.marioContext));
+            keyboard.Command((int)Keys.Left, new MarioWalkingLeft(mario.marioContext));
             keyboard.Command((int)Keys.D, new MarioWalkingRight(mario.marioContext));
+            keyboard.Command((int)Keys.Right, new MarioWalkingRight(mario.marioContext));
             keyboard.Command((int)Keys.W, new MarioJumping(mario.marioContext));
+            keyboard.Command((int)Keys.Up, new MarioJumping(mario.marioContext));
             keyboard.Command((int)Keys.S, new MarioCrouching(mario.marioContext));
+            keyboard.Command((int)Keys.Down, new MarioCrouching(mario.marioContext));
+
 
             standingMario = this.Content.Load<Texture2D>("small-standing-mario");
 
             // -------------------------gamepad control----------------
             gamepad = new GamepadController(PlayerIndex.One);
             gamepad.Command((int)Buttons.Start, new ExitCommand(this));
+            gamepad.Command((int)Buttons.DPadLeft, new MarioWalkingLeft(mario.marioContext));
+            gamepad.Command((int)Buttons.DPadRight, new MarioWalkingRight(mario.marioContext));
+            gamepad.Command((int)Buttons.A, new MarioJumping(mario.marioContext));
+            gamepad.Command((int)Buttons.DPadDown, new MarioCrouching(mario.marioContext));
+
+
+
+
+            // -------------------------gamepad control----------------
 
 
             base.Initialize();
