@@ -15,7 +15,6 @@ namespace Sprint0.Mario
     {
         private int lifeCount;
         private ISprite marioSprite;
-
         private IState currentState;
 
         public MarioContext marioContext;
@@ -25,17 +24,15 @@ namespace Sprint0.Mario
             marioContext = new MarioContext(game,position);
         }
 
-
-
-
         public void Update(GameTime gameTime)
         {
             marioContext.Update(gameTime);
         }
 
-        public void Draw(SpriteBatch spriteBatch)
+        public void Draw(SpriteBatch spriteBatch, Texture2D standingMario)
         {
-            marioContext.Draw(spriteBatch);
+            marioContext.Draw(spriteBatch, standingMario);
         }
+
     }
 }

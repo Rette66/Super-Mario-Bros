@@ -67,8 +67,7 @@ namespace Sprint0.Enemy
 
         public void Draw(SpriteBatch spriteBatch)
         {
-
-            goomba.DrawEnemy(spriteBatch, 2, currentFrame);
+            goomba.DrawAnimation(spriteBatch, 2, currentFrame);
         }
 
        

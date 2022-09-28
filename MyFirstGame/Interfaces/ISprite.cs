@@ -9,7 +9,7 @@ namespace Sprint0.interfaces
     public interface ISprite
     {
         void Draw(SpriteBatch spriteBatch);
-        void DrawEnemy(SpriteBatch batch, int columns, int currentFrame);
+        void DrawAnimation(SpriteBatch batch, int columns, int currentFrame);
         void Update(GameTime gameTime);
         int Width();
         int Height();

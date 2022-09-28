@@ -26,16 +26,6 @@ namespace Sprint0.Command
     }
 
 
-    public abstract class MarioCommand : ICommand
-    {
-        protected MarioContext receiver;
-        protected MarioCommand(MarioContext receiver)
-        {
-            this.receiver = receiver;
-        }
-        public abstract void Execute();
-    }
-
     public abstract class QuestionBlockCommand : ICommand
     {
         protected QuestionBlock receiver;
@@ -54,7 +44,15 @@ namespace Sprint0.Command
         }
         public abstract void Execute();
     }
-
+    public abstract class MarioCommand : ICommand
+    {
+        protected MarioContext receiver;
+        protected MarioCommand(MarioContext receiver)
+        {
+            this.receiver = receiver;
+        }
+        public abstract void Execute();
+    }
 
 }
 

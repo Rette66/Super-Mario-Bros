@@ -65,6 +65,47 @@ namespace Sprint0.Command
             receiver.TakeDamage();
         }
     }
+    public class MarioWalkingLeft : MarioCommand
+    {
+        public MarioWalkingLeft(MarioContext receiver)
+            : base(receiver) { }
+
+        public override void Execute()
+        {
+            receiver.walkingLeft();
+        }
+    }
+    public class MarioWalkingRight : MarioCommand
+    {
+        public MarioWalkingRight(MarioContext receiver)
+            : base(receiver) { }
+
+        public override void Execute()
+        {
+            receiver.walkingRight();
+        }
+    }
+    public class MarioJumping : MarioCommand
+    {
+        public MarioJumping(MarioContext receiver)
+            : base(receiver) { }
+
+        public override void Execute()
+        {
+            receiver.jumping();
+        }
+    }
+    public class MarioCrouching : MarioCommand
+    {
+        public MarioCrouching(MarioContext receiver)
+            : base(receiver) { }
+
+        public override void Execute()
+        {
+            receiver.crouching();
+        }
+    }
+
     public class QuestionBlockBump : QuestionBlockCommand
     {
         public QuestionBlockBump(QuestionBlock receiver)
@@ -97,5 +138,7 @@ namespace Sprint0.Command
             receiver.Bump();
         }
     }
+
+
 
 }

@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Sprint0.interfaces;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -125,9 +126,7 @@ namespace Sprint0.Sprites
         {
 
             Animation(gameTime);
-
-            Bump(gameTime);
-            
+            Bump(gameTime);            
             Appear(gameTime);
             Fall(gameTime);
 
@@ -146,12 +145,17 @@ namespace Sprint0.Sprites
         }
 
         
-        public void DrawEnemy(SpriteBatch batch, int columns, int currentFrame)
+        public void DrawAnimation(SpriteBatch batch, int columns, int currentFrame)
         {
             int width = frameSize.X;
             int height = frameSize.Y;
             int row = currentFrame / columns;
             int column = currentFrame % columns;
+
+            //Debug.WriteLine(width + " " + height);
+            //Debug.WriteLine(currentFrame);
+            //Debug.WriteLine(row + " " + column);
+            //Debug.WriteLine((int)position.X + " " + (int)position.Y);
 
             Rectangle sourceRectangle = new Rectangle(width * column, height * row, width, height);
             Rectangle destinationRectangle = new Rectangle((int)position.X, (int)position.Y, width, height);
@@ -169,6 +173,7 @@ namespace Sprint0.Sprites
         {
             return texture.Width;
         }
+        
 
         public void IsBump()
         {

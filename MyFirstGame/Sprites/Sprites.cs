@@ -13,11 +13,45 @@ namespace Sprint0.Sprites
      class NormalMarioStandingSprite :Sprite
     {
         public NormalMarioStandingSprite(Game1 game, Vector2 position)
-            : base (game.Content.Load<Texture2D>("small-standing-mario"), position,new Vector2(0,0), true,false,0,Point.Zero, new Point(18,24) )
+            : base (game.Content.Load<Texture2D>("mario-standing-right"), position,new Vector2(0,0), true,false,0,Point.Zero, new Point(18,24) )
         {
 
         }
     }
+
+    class NormalMarioWalkingLeftSprite : Sprite
+    {
+        public NormalMarioWalkingLeftSprite(Game1 game1, Vector2 vector2)
+            : base(game1.Content.Load<Texture2D>("mario-left"), vector2, new Vector2(0, 0), true, true, 0, Point.Zero, new Point(30, 17))
+        {
+
+        }
+    }
+    class NormalMarioWalkingRightSprite : Sprite
+    {
+        public NormalMarioWalkingRightSprite(Game1 game1, Vector2 vector2)
+            : base(game1.Content.Load<Texture2D>("mario-right"), vector2, new Vector2(0, 0), true, true, 0, Point.Zero, new Point(30, 17))
+        {
+
+        }
+    }
+    class NormalMarioJumpingSprite : Sprite
+    {
+        public NormalMarioJumpingSprite(Game1 game1, Vector2 vector2)
+            : base(game1.Content.Load<Texture2D>("mario-jumping-right"), vector2, new Vector2(0, 0), true, true, 0, Point.Zero, new Point(30, 17))
+        {
+
+        }
+    }
+    class NormalMarioCrouchingSprite : Sprite
+    {
+        public NormalMarioCrouchingSprite(Game1 game1, Vector2 vector2)
+            : base(game1.Content.Load<Texture2D>("mario-crouching"), vector2, new Vector2(0, 0), true, false, 0, Point.Zero, new Point(15, 18))
+        {
+
+        }
+    }
+
 
     class GoombaSprite : Sprite
     {
@@ -48,6 +82,43 @@ namespace Sprint0.Sprites
     }
 
 
+    class FireMarioWalkingLeftSprite : Sprite
+    {
+        //151,37
+        public FireMarioWalkingLeftSprite(Game1 game1, Vector2 vector2)
+            : base(game1.Content.Load<Texture2D>("FireMarioWalkingLeft"), vector2, new Vector2(0, 0), true, true, 0, Point.Zero, new Point(25, 33))
+        {
+
+        }
+    }
+    class FireMarioWalkingRightSprite : Sprite
+    {
+        //152,33
+        public FireMarioWalkingRightSprite(Game1 game1, Vector2 vector2)
+            : base(game1.Content.Load<Texture2D>("FireMarioWalkingRight"), vector2, new Vector2(0, 0), true, true, 0, Point.Zero, new Point(25, 33))
+        {
+
+        }
+    }
+    class FireMarioJumpingSprite : Sprite
+    {
+        public FireMarioJumpingSprite(Game1 game1, Vector2 vector2)
+            : base(game1.Content.Load<Texture2D>("FireMarioJumping"), vector2, new Vector2(0, 0), true, true, 0, Point.Zero, new Point(25, 30))
+        {
+
+        }
+    }
+    class FireMarioCrouchingSprite : Sprite
+    {
+        public FireMarioCrouchingSprite(Game1 game1, Vector2 vector2)
+            : base(game1.Content.Load<Texture2D>("FireMarioCrouching"), vector2, new Vector2(0, 0), true, false, 0, Point.Zero, new Point(16, 24))
+        {
+
+        }
+    }
+
+
+
     class SuperMarioStandingSprite : Sprite
     {
         public SuperMarioStandingSprite(Game1 game1, Vector2 vector2)
@@ -56,6 +127,42 @@ namespace Sprint0.Sprites
 
         }
     }
+
+    class SuperMarioWalkingLeftSprite : Sprite
+    {
+        //151,37
+        public SuperMarioWalkingLeftSprite(Game1 game1, Vector2 vector2)
+            : base(game1.Content.Load<Texture2D>("SuperMarioWalkingLeft"), vector2, new Vector2(0, 0), true, true, 0, Point.Zero, new Point(30, 33))
+        {
+
+        }
+    }
+    class SuperMarioWalkingRightSprite : Sprite
+    {
+        //152,33
+        public SuperMarioWalkingRightSprite(Game1 game1, Vector2 vector2)
+            : base(game1.Content.Load<Texture2D>("SuperMarioWalkingRight"), vector2, new Vector2(0, 0), true, true, 0, Point.Zero, new Point(30, 33))
+        {
+
+        }
+    }
+    class SuperMarioJumpingSprite : Sprite
+    {
+        public SuperMarioJumpingSprite(Game1 game1, Vector2 vector2)
+            : base(game1.Content.Load<Texture2D>("SuperMarioJumping"), vector2, new Vector2(0, 0), true, true, 0, Point.Zero, new Point(25, 34))
+        {
+
+        }
+    }
+    class SuperMarioCrouchingSprite : Sprite
+    {
+        public SuperMarioCrouchingSprite(Game1 game1, Vector2 vector2)
+            : base(game1.Content.Load<Texture2D>("SuperMarioCrouching"), vector2, new Vector2(0, 0), true, false, 0, Point.Zero, new Point(16, 24))
+        {
+
+        }
+    }
+
 
     class QuestionBlockSprite : Sprite
     {

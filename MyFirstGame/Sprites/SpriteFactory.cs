@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Sprint0.Sprites;
 using Sprint0.interfaces;
+using System.Diagnostics;
 
 namespace Sprint0.Sprites
 {
@@ -20,9 +21,8 @@ namespace Sprint0.Sprites
             random = new Random(DateTime.Now.Millisecond);
         }
         public abstract ISprite IdleMario(Game1 game, Vector2 postion);
-        public abstract ISprite RunningMario(Game1 game, Vector2 position);
+        public abstract ISprite RunningMario(Game1 game, Vector2 position, string dir);
         public abstract ISprite JumpingMario(Game1 game, Vector2 position);
-        public abstract ISprite FallingMario(Game1 game, Vector2 position);
         public abstract ISprite CrouchingMario(Game1 game, Vector2 position);
 
     }
@@ -46,7 +46,7 @@ namespace Sprint0.Sprites
         {
             random = new Random(DateTime.Now.Millisecond);
         }
-        public abstract ISprite CreateEnemy(Game1 game, Vector2 position);
+        public abstract ISprite CreateEnemy(Game1 game, Vector2 postion);
     }
 
 
@@ -73,22 +73,27 @@ namespace Sprint0.Sprites
             return new NormalMarioStandingSprite(game,pos );
         }
 
-        public override ISprite RunningMario(Game1 game, Vector2 position)
+        public override ISprite RunningMario(Game1 game, Vector2 position, string dir)
         {
-            return new NormalMarioStandingSprite(game, position);//need changes
+            if (dir.Equals("right"))
+            {
+                Debug.WriteLine("right animation");
+                return new NormalMarioWalkingRightSprite(game, position);
+            }
+            else
+            {
+                return new NormalMarioWalkingLeftSprite(game, position);
+            }
+
         }
 
         public override ISprite JumpingMario(Game1 game, Vector2 position)
         {
-            return new NormalMarioStandingSprite(game, position);//need changes
-        }
-        public override ISprite FallingMario(Game1 game, Vector2 position)
-        {
-            return new NormalMarioStandingSprite(game, position);//need changes
+            return new NormalMarioJumpingSprite(game, position);
         }
         public override ISprite CrouchingMario(Game1 game, Vector2 position)
         {
-            return new NormalMarioStandingSprite(game, position);//need changes
+            return new NormalMarioCrouchingSprite(game, position);
         }
     }
 
@@ -117,22 +122,26 @@ namespace Sprint0.Sprites
             return new FireMarioStandingSprite(game, pos);
         }
 
-        public override ISprite RunningMario(Game1 game, Vector2 position)
+        public override ISprite RunningMario(Game1 game, Vector2 position, string dir)
         {
-            return new FireMarioStandingSprite(game, position);//need changes
+            if (dir.Equals("right"))
+            {
+                Debug.WriteLine("right animation");
+                return new FireMarioWalkingRightSprite(game, position);
+            }
+            else
+            {
+                return new FireMarioWalkingLeftSprite(game, position);
+            }
         }
 
         public override ISprite JumpingMario(Game1 game, Vector2 position)
         {
-            return new FireMarioStandingSprite(game, position);//need changes
-        }
-        public override ISprite FallingMario(Game1 game, Vector2 position)
-        {
-            return new FireMarioStandingSprite(game, position);//need changes
+            return new FireMarioJumpingSprite(game, position);//need changes
         }
         public override ISprite CrouchingMario(Game1 game, Vector2 position)
         {
-            return new FireMarioStandingSprite(game, position);//need changes
+            return new FireMarioCrouchingSprite(game, position);//need changes
         }
     }
 
@@ -161,22 +170,25 @@ namespace Sprint0.Sprites
             return new SuperMarioStandingSprite(game, pos);
         }
 
-        public override ISprite RunningMario(Game1 game, Vector2 position)
+        public override ISprite RunningMario(Game1 game, Vector2 position, string dir)
         {
-            return new SuperMarioStandingSprite(game, position);//need changes
+            if (dir.Equals("right"))
+            {
+                return new SuperMarioWalkingRightSprite(game, position);
+            }
+            else
+            {
+                return new SuperMarioWalkingLeftSprite(game, position);
+            }
         }
 
         public override ISprite JumpingMario(Game1 game, Vector2 position)
         {
-            return new SuperMarioStandingSprite(game, position);//need changes
-        }
-        public override ISprite FallingMario(Game1 game, Vector2 position)
-        {
-            return new SuperMarioStandingSprite(game, position);//need changes
+            return new SuperMarioJumpingSprite(game, position);//need changes
         }
         public override ISprite CrouchingMario(Game1 game, Vector2 position)
         {
-            return new SuperMarioStandingSprite(game, position);//need changes
+            return new SuperMarioCrouchingSprite(game, position);//need changes
         }
     }
 
@@ -345,9 +357,9 @@ namespace Sprint0.Sprites
 
     class GoombaFactory : EnemyFactory
     {
-        private static EnemyFactory instance;
+        private static GoombaFactory instance;
 
-        public static EnemyFactory Instance
+        public static GoombaFactory Instance
         {
             get
             {
@@ -367,9 +379,9 @@ namespace Sprint0.Sprites
 
     class KoopaTroopaFactory : EnemyFactory
     {
-        private static EnemyFactory instance;
+        private static KoopaTroopaFactory instance;
 
-        public static EnemyFactory Instance
+        public static KoopaTroopaFactory Instance
         {
             get
             {
@@ -386,4 +398,5 @@ namespace Sprint0.Sprites
             return new KoopaTroopaSprite(game, pos);
         }
     }
+
 }

@@ -12,6 +12,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework.Input;
 using Sprint0.Block;
+using System.Diagnostics;
 
 namespace Sprint0.Mario
 {
@@ -27,15 +28,26 @@ namespace Sprint0.Mario
         public Game1 game;
         public Vector2 position;
 
+        public ISprite walkingMario;
+        public bool isLeft;
+        public bool isRight;
+        public bool isJump;
+        public bool isCrouch;
+        public bool pressed;
+
 
         public MarioContext(Game1 game, Vector2 position)
         {
             this.game = game;
             this.position = position;
+            isLeft = false;
+            isRight = false;
+            isJump = false;
+            isCrouch = false;
+            pressed = false;
 
             currentState = new NormalMario(this);
             lifecount = 1;
-
         }
 
 
@@ -45,7 +57,36 @@ namespace Sprint0.Mario
         }
 
 
-        
+        public void walkingLeft()
+        {
+            Debug.WriteLine(isLeft.ToString());
+            isLeft = true;
+            isRight = false;
+            isCrouch = false;
+            isJump = false;
+
+        }
+        public void walkingRight()
+        {
+            isRight = true;
+            isLeft = false;
+            isCrouch = false;
+            isJump = false;
+        }
+        public void jumping()
+        {
+            isJump = true;
+            isLeft = false;
+            isRight = false;
+            isCrouch = false;
+        }
+        public void crouching()
+        {
+            isCrouch = true;
+            isJump = false;
+            isLeft = false;
+            isRight = false;
+        }
 
         public void ChangeToNormal()
         {
@@ -78,21 +119,30 @@ namespace Sprint0.Mario
 
         public void PowerChanges(GameTime gameTime)
         {
-           
-            currentState.Update(gameTime);
-
+            currentState.Update(gameTime, isLeft, isRight, isJump, isCrouch);
         }
-
 
 
         public void Update(GameTime gameTime)
         {
-            currentState.Update(gameTime);
+            currentState.Update(gameTime, isLeft, isRight, isJump, isCrouch);
         }
 
-        public void Draw(SpriteBatch batch)
+        public void Draw(SpriteBatch batch, Texture2D standingMario)
         {
-            currentState.Draw(batch);
+            if (!pressed)
+            {
+                //currentState = new FireMario(this);
+                currentState.Draw(batch);
+            }
+            else if(pressed && isCrouch)
+            {
+                currentState.DrawCrouch(batch);
+            }
+            else
+            {
+                currentState.DrawAnimation(batch);
+            }
         }
     }
 }

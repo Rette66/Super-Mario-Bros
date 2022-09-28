@@ -12,10 +12,12 @@ namespace Sprint0.interfaces
 {
     public interface IState
     {
-
-
-        void Update(GameTime gameTime );
+        void Update(GameTime gameTime, bool isLeft, bool isRight, bool isjump, bool isCrouch);
 
         void Draw(SpriteBatch batch);
+        void DrawCrouch(SpriteBatch batch);
+        void DrawAnimation(SpriteBatch batch);
+
+
     }
 }

@@ -64,7 +64,7 @@ namespace Sprint0.Enemy
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            koopaTroopa.DrawEnemy(spriteBatch, 2, currentFrame);
+            koopaTroopa.DrawAnimation(spriteBatch, 2, currentFrame);
         }
 
 

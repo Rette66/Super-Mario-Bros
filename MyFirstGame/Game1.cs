@@ -35,6 +35,8 @@ namespace Sprint0
         private Goomba goomba;
         private KoopaTroopa koopaTroopa;
 
+        private Texture2D standingMario;
+
         public Color fontColor { get; set; } = Color.White;
         private SpriteFont HUDFont;
 
@@ -68,10 +70,15 @@ namespace Sprint0
             keyboard.Command((int)Keys.I, new ChangeToFireMario(mario.marioContext));
             keyboard.Command((int)Keys.U, new ChangeToSuperMario(mario.marioContext));
             keyboard.Command((int)Keys.Y, new ChangeToNormalMario(mario.marioContext));
-            keyboard.Command((int)Keys.W, new QuestionBlockBump(questionBlock));
+            keyboard.Command((int)Keys.OemQuestion, new QuestionBlockBump(questionBlock));
             keyboard.Command((int)Keys.B, new BrickBlockBump(brickBlock));
             keyboard.Command((int)Keys.H, new BrickBlockChangeVisible(hiddenBrickBlock));
-            
+            keyboard.Command((int)Keys.A, new MarioWalkingLeft(mario.marioContext));
+            keyboard.Command((int)Keys.D, new MarioWalkingRight(mario.marioContext));
+            keyboard.Command((int)Keys.W, new MarioJumping(mario.marioContext));
+            keyboard.Command((int)Keys.S, new MarioCrouching(mario.marioContext));
+
+            standingMario = this.Content.Load<Texture2D>("small-standing-mario");
 
             // -------------------------gamepad control----------------
             gamepad = new GamepadController(PlayerIndex.One);
@@ -103,6 +110,14 @@ namespace Sprint0
 
             keyboard.Update();
             gamepad.Update();
+            if(Keyboard.GetState().IsKeyDown(Keys.A) || Keyboard.GetState().IsKeyDown(Keys.D) || Keyboard.GetState().IsKeyDown(Keys.W) || Keyboard.GetState().IsKeyDown(Keys.S))
+            {
+                mario.marioContext.pressed = true;
+            }
+            else
+            {
+                mario.marioContext.pressed = false;
+            }
 
             mario.Update(gameTime);
             brickBlock.isSuperMario = mario.marioContext.isSuperMario;
@@ -131,7 +146,7 @@ namespace Sprint0
             _spriteBatch.DrawString(HUDFont, "Press Q(start) for quit\nPress W(A) E(B) R(X) T(Y) to show image", new Vector2(50, 0), fontColor);
             
 
-            mario.Draw(_spriteBatch);
+            mario.Draw(_spriteBatch, standingMario);
             questionBlock.Draw(_spriteBatch);
             usedBlock.Draw(_spriteBatch); 
             brickBlock.Draw(_spriteBatch); 
