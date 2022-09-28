@@ -12,17 +12,23 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework.Input;
 using Sprint0.Block;
+using System.Diagnostics;
 
 namespace Sprint0.Mario
 {
     public class MarioContext
     {
 
-        private IState currentState;
+        private IState currentPowerState;
+        private IState currentMovementState;
+        private ISprite currentSprite;
+
+        private MarioFactory marioFactory;
 
         public bool isSuperMario;
 
         public int lifecount;
+
 
         public Game1 game;
         public Vector2 position;
@@ -33,66 +39,146 @@ namespace Sprint0.Mario
             this.game = game;
             this.position = position;
 
-            currentState = new NormalMario(this);
+            currentPowerState = new NormalMario(this);
+            currentMovementState = new IdleMario(this);
             lifecount = 1;
-
+            marioFactory = new NormalMarioFactory();
         }
 
 
-        public void setState(IState state)
+        public void ChangeToRight()
         {
-            currentState = state;
+            currentSprite.FaceRight();
+        }
+        public void ChangeToLeft()
+        {
+            currentSprite.FaceLeft();
+        }
+
+        public void ChangeToJump()
+        {
+            switch (currentMovementState)
+            {
+                case CrouchingMario:
+                    currentMovementState = new IdleMario(this);
+                    break;
+                default:
+                    currentMovementState = new JumpingMario(this);
+                    break;
+            }
+            Debug.WriteLine(currentMovementState);
+        }
+        public void ChangeToCrouch()
+        {
+            switch (currentMovementState)
+            {
+                case JumpingMario:
+                    currentMovementState = new IdleMario(this);
+                    break;
+                default:
+                    currentMovementState = new CrouchingMario(this);
+                    break;
+            }
+        }
+        public void ChangeToWalking()
+        {
+            currentMovementState = new RunningMario(this);
         }
 
 
-        
 
         public void ChangeToNormal()
         {
             isSuperMario = false;
-            currentState = new NormalMario(this);
+            lifecount = 1;
+            currentPowerState = new NormalMario(this);
         }
         public void ChangeToFire()
         {
-            isSuperMario = false;
-            if (lifecount<3 && lifecount>0)
-                lifecount++;
-            currentState = new FireMario(this);
+            isSuperMario = true;
+            lifecount = 3;
+            currentPowerState = new FireMario(this);
         }
         public void ChangeToSuper()
         {
             isSuperMario = true;
-            if (lifecount<3 && lifecount>0)
-                lifecount++;
-            currentState = new SuperMario(this);
-            
+            lifecount = 2;
+            currentPowerState = new SuperMario(this);
+
         }
         public void TakeDamage()
         {
             lifecount--;
-            if (lifecount <= 0)
-                currentState = new DeadMario(this);
+            isSuperMario = false;
+            switch (lifecount)
+            {
+                case 0:
+                    currentPowerState = new DeadMario(this);
+                    break;
+                case 1:
+                    currentPowerState = new NormalMario(this);
+                    break;
+                case 2:
+                    currentPowerState = new SuperMario(this);
+                    break;
+            }
         }
 
 
 
-        public void PowerChanges(GameTime gameTime)
+        private void SetUpFactory()
         {
-           
-            currentState.Update(gameTime);
+            switch (currentPowerState)
+            {
+                case NormalMario:
+                    marioFactory = new NormalMarioFactory();
+                    break;
 
+                case SuperMario:
+                    marioFactory = new SuperMarioFactory();
+                    break;
+
+                case FireMario:
+                    marioFactory = new FireMarioFactory();  
+                    break;
+
+                case DeadMario:
+                    marioFactory = new DeadMarioFactory();
+                    break;
+            }
         }
 
+        private void CreateMarioSprite()
+        {
+            switch (currentMovementState)
+            {
+                case IdleMario:
+                    currentSprite = marioFactory.IdleMario(game, position);
+                    break;
+                case JumpingMario:
+                    currentSprite = marioFactory.JumpingMario(game, position);
+                    break;
+                case CrouchingMario:
+                    currentSprite = marioFactory.CrouchingMario(game, position);
+                    break;
+                case RunningMario:
+                    currentSprite = marioFactory.RunningMario(game, position);
+                    break;
+            }
+        }
 
 
         public void Update(GameTime gameTime)
         {
-            currentState.Update(gameTime);
+            SetUpFactory();
+            CreateMarioSprite();
+            currentPowerState.Update(gameTime,currentSprite);
+            currentMovementState.Update(gameTime,currentSprite);
         }
 
         public void Draw(SpriteBatch batch)
         {
-            currentState.Draw(batch);
+            currentSprite.Draw(batch);
         }
     }
 }

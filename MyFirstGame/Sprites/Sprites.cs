@@ -13,11 +13,31 @@ namespace Sprint0.Sprites
      class NormalMarioStandingSprite :Sprite
     {
         public NormalMarioStandingSprite(Game1 game, Vector2 position)
-            : base (game.Content.Load<Texture2D>("small-standing-mario"), position,new Vector2(0,0), true,false,0,Point.Zero, new Point(18,24) )
+            : base (game.Content.Load<Texture2D>("small-standing-mario"), position,new Vector2(0,0), true,false,0,Point.Zero, new Point(18,24))
         {
 
         }
     }
+
+    class NormalMarioJumpingSprite : Sprite
+    {
+        public NormalMarioJumpingSprite(Game1 game, Vector2 position)
+            : base(game.Content.Load<Texture2D>("small-jumping-mario"), position, new Vector2(0, 0), true, false, 0, Point.Zero, new Point(18, 18))
+        {
+
+        }
+    }
+
+    class NormalMarioWalkingSprite : Sprite
+    {
+        public NormalMarioWalkingSprite(Game1 game, Vector2 position)
+            : base(game.Content.Load<Texture2D>("small-walking-mario"), position, new Vector2(0, 0), true, true, 0, new Point(3,1), new Point(24, 24))
+        {
+
+        }
+    }
+
+
 
 
     class FireMarioStandingSprite : Sprite
@@ -30,6 +50,8 @@ namespace Sprint0.Sprites
     }
 
 
+
+
     class SuperMarioStandingSprite : Sprite
     {
         public SuperMarioStandingSprite(Game1 game1, Vector2 vector2)
@@ -38,6 +60,16 @@ namespace Sprint0.Sprites
 
         }
     }
+
+    class DeadMarioSprite : Sprite
+    {
+        public DeadMarioSprite(Game1 game1, Vector2 vector2)
+            : base(game1.Content.Load<Texture2D>("dead-mario"), vector2, new Vector2(0, 0), true, false, 0, Point.Zero, new Point(18,18))
+        {
+
+        }
+    }
+
 
     class QuestionBlockSprite : Sprite
     {

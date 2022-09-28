@@ -22,7 +22,6 @@ namespace Sprint0.Sprites
         public abstract ISprite IdleMario(Game1 game, Vector2 postion);
         public abstract ISprite RunningMario(Game1 game, Vector2 position);
         public abstract ISprite JumpingMario(Game1 game, Vector2 position);
-        public abstract ISprite FallingMario(Game1 game, Vector2 position);
         public abstract ISprite CrouchingMario(Game1 game, Vector2 position);
 
     }
@@ -64,17 +63,14 @@ namespace Sprint0.Sprites
 
         public override ISprite RunningMario(Game1 game, Vector2 position)
         {
-            return new NormalMarioStandingSprite(game, position);//need changes
+            return new NormalMarioWalkingSprite(game, position);//need changes
         }
 
         public override ISprite JumpingMario(Game1 game, Vector2 position)
         {
-            return new NormalMarioStandingSprite(game, position);//need changes
+            return new NormalMarioJumpingSprite(game, position);//need changes
         }
-        public override ISprite FallingMario(Game1 game, Vector2 position)
-        {
-            return new NormalMarioStandingSprite(game, position);//need changes
-        }
+
         public override ISprite CrouchingMario(Game1 game, Vector2 position)
         {
             return new NormalMarioStandingSprite(game, position);//need changes
@@ -115,10 +111,6 @@ namespace Sprint0.Sprites
         {
             return new FireMarioStandingSprite(game, position);//need changes
         }
-        public override ISprite FallingMario(Game1 game, Vector2 position)
-        {
-            return new FireMarioStandingSprite(game, position);//need changes
-        }
         public override ISprite CrouchingMario(Game1 game, Vector2 position)
         {
             return new FireMarioStandingSprite(game, position);//need changes
@@ -149,17 +141,11 @@ namespace Sprint0.Sprites
         {
             return new SuperMarioStandingSprite(game, pos);
         }
-
         public override ISprite RunningMario(Game1 game, Vector2 position)
         {
             return new SuperMarioStandingSprite(game, position);//need changes
         }
-
         public override ISprite JumpingMario(Game1 game, Vector2 position)
-        {
-            return new SuperMarioStandingSprite(game, position);//need changes
-        }
-        public override ISprite FallingMario(Game1 game, Vector2 position)
         {
             return new SuperMarioStandingSprite(game, position);//need changes
         }
@@ -181,7 +167,7 @@ namespace Sprint0.Sprites
 
     }
 
-    class DeadMarioFactory : DMarioFactory
+    class DeadMarioFactory : MarioFactory
     {
         private static DeadMarioFactory instance;
 
@@ -197,9 +183,21 @@ namespace Sprint0.Sprites
             }
         }
 
-        public override ISprite DeadMario(Game1 game, Vector2 pos)
+        public override ISprite CrouchingMario(Game1 game, Vector2 pos)
         {
-            return new SuperMarioStandingSprite(game, pos);
+            return new DeadMarioSprite(game, pos);
+        }
+        public override ISprite IdleMario(Game1 game, Vector2 pos)
+        {
+            return new DeadMarioSprite(game, pos);
+        }
+        public override ISprite JumpingMario(Game1 game, Vector2 pos)
+        {
+            return new DeadMarioSprite(game, pos);
+        }
+        public override ISprite RunningMario(Game1 game, Vector2 pos)
+        {
+            return new DeadMarioSprite(game, pos);
         }
     }
 

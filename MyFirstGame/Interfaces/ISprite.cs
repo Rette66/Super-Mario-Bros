@@ -13,6 +13,8 @@ namespace Sprint0.interfaces
         int Width();
         int Height();
         void IsBump();
+        void FaceLeft();
+        void FaceRight();
         void ChangeToVisible();
         void HideSprite();
         void IsAppear();

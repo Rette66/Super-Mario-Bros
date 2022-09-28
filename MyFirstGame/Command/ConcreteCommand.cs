@@ -65,6 +65,40 @@ namespace Sprint0.Command
             receiver.TakeDamage();
         }
     }
+
+    public class MarioJumping : MarioCommand
+    {
+        public MarioJumping(MarioContext receiver)
+            : base(receiver) { }
+
+        public override void Execute()
+        {
+            receiver.ChangeToJump();
+        }
+    }
+
+    public class MarioFaceLeft : MarioCommand
+    {
+        public MarioFaceLeft(MarioContext receiver)
+            : base(receiver) { }
+
+        public override void Execute()
+        {
+            receiver.ChangeToLeft();
+        }
+    }
+
+    public class MarioFaceRight : MarioCommand
+    {
+        public MarioFaceRight(MarioContext receiver)
+            : base(receiver) { }
+
+        public override void Execute()
+        {
+            receiver.ChangeToRight();
+        }
+    }
+
     public class QuestionBlockBump : QuestionBlockCommand
     {
         public QuestionBlockBump(QuestionBlock receiver)

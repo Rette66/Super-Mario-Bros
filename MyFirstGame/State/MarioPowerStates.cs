@@ -14,21 +14,15 @@ namespace Sprint0.State
 {
     public class NormalMario : IState
     {
-        private ISprite currentSprite;
         private MarioContext mario;
 
         public NormalMario(MarioContext mario)
         {
-            this.currentSprite = NormalMarioFactory.Instance.IdleMario(mario.game, mario.position);
             this.mario = mario;
         }
-        public void Update(GameTime gameTime)
+        public void Update(GameTime gameTime, ISprite currentSprite)
         {
             currentSprite.Update(gameTime);
-        }
-        public void Draw(SpriteBatch batch)
-        {
-            currentSprite.Draw(batch);
         }
 
 
@@ -36,72 +30,56 @@ namespace Sprint0.State
 
     public class FireMario : IState
     {
-        private ISprite currentSprite;
         private MarioContext marioContext;
 
         public FireMario(MarioContext mario)
         {
-            this.currentSprite = FireMarioFactory.Instance.IdleMario(mario.game, mario.position);
             this.marioContext = mario;
         }
 
-        public void Update(GameTime gameTime)
+        public void Update(GameTime gameTime, ISprite currentSprite)
         {
 
             currentSprite.Update(gameTime);
         }
 
-        public void Draw(SpriteBatch batch)
-        {
-            currentSprite.Draw(batch);
-        }
+ 
 
     }
 
     public class SuperMario : IState
     {
-        private ISprite currentSprite;
         private MarioContext marioContext;
 
         public SuperMario(MarioContext mario)
         {
-            this.currentSprite = SuperMarioFactory.Instance.IdleMario(mario.game, mario.position);
             this.marioContext = mario;
         }
 
-        public void Update(GameTime gameTime)
+        public void Update(GameTime gameTime, ISprite currentSprite)
         {
 
             currentSprite.Update(gameTime);
         }
 
-        public void Draw(SpriteBatch batch)
-        {
-            currentSprite.Draw(batch);
-        }
+
     }
 
 
     public class DeadMario : IState
     {
-        private ISprite currentSprite;
         private MarioContext marioContext;
 
         public DeadMario(MarioContext mario)
         {
-            this.currentSprite = DeadMarioFactory.Instance.DeadMario(mario.game, mario.position);
             this.marioContext = mario;
         }
 
-        public void Update(GameTime gameTime)
+        public void Update(GameTime gameTime, ISprite currentSprite)
         {
 
             currentSprite.Update(gameTime);
         }
 
-        public void Draw(SpriteBatch batch)
-        {
-            currentSprite.Draw(batch);
-        }
     }
 }

@@ -22,7 +22,7 @@ namespace Sprint0
         private IController keyboard;
         private IController gamepad;
 
-        private MarioAvatar mario;
+        private MarioContext mario;
         private QuestionBlock questionBlock;
         private UsedBlock usedBlock;
         private FloorBlock floorBlock;
@@ -46,7 +46,7 @@ namespace Sprint0
             // TODO: Add your initialization logic here
 
             //-------------------------mario initial----------------------
-            mario = new MarioAvatar(this, new Vector2(100, 100));
+            mario = new MarioContext(this, new Vector2(100, 100));
             questionBlock = new QuestionBlock(this, new Vector2(100, 200));
             usedBlock = new UsedBlock(this, new Vector2(150, 200));
             floorBlock = new FloorBlock(this, new Vector2(200, 200));
@@ -58,10 +58,17 @@ namespace Sprint0
             //-------------------------keyboard control------------------
             keyboard = new KeyboardController();
             keyboard.Command((int)Keys.Q, new ExitCommand(this));
-            keyboard.Command((int)Keys.I, new ChangeToFireMario(mario.marioContext));
-            keyboard.Command((int)Keys.U, new ChangeToSuperMario(mario.marioContext));
-            keyboard.Command((int)Keys.Y, new ChangeToNormalMario(mario.marioContext));
-            keyboard.Command((int)Keys.W, new QuestionBlockBump(questionBlock));
+            keyboard.Command((int)Keys.I, new ChangeToFireMario(mario));
+            keyboard.Command((int)Keys.U, new ChangeToSuperMario(mario));
+            keyboard.Command((int)Keys.Y, new ChangeToNormalMario(mario));
+            keyboard.Command((int)Keys.O, new MarioTakeDamege(mario));
+            keyboard.Command((int)Keys.A, new MarioFaceLeft(mario));
+            keyboard.Command((int)Keys.D, new MarioFaceRight(mario));
+            keyboard.Command((int)Keys.W, new MarioJumping(mario));
+
+
+
+            keyboard.Command((int)Keys.OemQuestion, new QuestionBlockBump(questionBlock));
             keyboard.Command((int)Keys.B, new BrickBlockBump(brickBlock));
             keyboard.Command((int)Keys.H, new BrickBlockChangeVisible(hiddenBrickBlock));
 
@@ -97,7 +104,7 @@ namespace Sprint0
             gamepad.Update();
 
             mario.Update(gameTime);
-            brickBlock.isSuperMario = mario.marioContext.isSuperMario;
+            brickBlock.isSuperMario = mario.isSuperMario;
             questionBlock.Update(gameTime);
             usedBlock.Update(gameTime);
             floorBlock.Update(gameTime);

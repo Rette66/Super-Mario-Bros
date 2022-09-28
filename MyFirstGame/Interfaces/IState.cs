@@ -14,8 +14,7 @@ namespace Sprint0.interfaces
     {
 
 
-        void Update(GameTime gameTime );
+        void Update(GameTime gameTime, ISprite currentSprite );
 
-        void Draw(SpriteBatch batch);
     }
 }

@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Sprint0.interfaces;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -24,6 +25,9 @@ namespace Sprint0.Sprites
         Point frameSize;
         int timeSinceLastFrame = 0;
         int delayTime;
+
+        public bool faceRight;
+        public SpriteEffects spriteEffects;
 
         public float velocity = 4f;
         public float horizonVelocity = 2f;
@@ -47,10 +51,11 @@ namespace Sprint0.Sprites
             this.delayTime = delayTime;
             this.frameSize = frameSize;
             this.animatedSpriteSize = animatedSpriteSize;
-            bumpHeight = position.Y - 25;
+            bumpHeight = position.Y - 30;
             originHight = position.Y;
             h = position.Y - 60;
             currentFrame = new Point(0,0);
+
         }
         
         public void Bump(GameTime gameTime)
@@ -61,10 +66,12 @@ namespace Sprint0.Sprites
                 if (position.Y < bumpHeight)
                 {
                     velocity = -velocity;
+                    Debug.WriteLine(velocity);
                 }
                 if (position.Y > originHight)
                 {
                     velocity = 0;
+                    isBump = false;
                 }
             }
         }
@@ -131,6 +138,18 @@ namespace Sprint0.Sprites
             Appear(gameTime);
             Fall(gameTime);
 
+
+        }
+
+
+        public void FaceLeft()
+        {
+            faceRight = true;
+        }
+
+        public void FaceRight()
+        {
+            faceRight = false;
         }
 
 
@@ -138,12 +157,22 @@ namespace Sprint0.Sprites
         {
             if (isVisible)
             {
+                if (faceRight)
+                {
+                    spriteEffects = SpriteEffects.None;
+                }
+                else
+                {
+                    spriteEffects = SpriteEffects.FlipHorizontally;
+                }
+
                 batch.Draw(texture, position,
                     new Rectangle(currentFrame.X * frameSize.X, currentFrame.Y * frameSize.Y,
                     frameSize.X, frameSize.Y),
-                    Color.White, 0, Vector2.Zero, 1, SpriteEffects.None, 0);
+                    Color.White, 0, Vector2.Zero, 1, spriteEffects, 0);
             }
         }
+
 
 
 
@@ -159,7 +188,9 @@ namespace Sprint0.Sprites
 
         public void IsBump()
         {
+            Debug.WriteLine(isBump);
             isBump = true;
+            velocity = 4f;
         }
 
         public void IsAppear()
