@@ -62,7 +62,7 @@ namespace Sprint0
             mario = new MarioEntity(this, new Vector2(100, 100));
 
             //-------------------------block initial----------------------
-            //brickBlock = new BrickBlockEntity(this, new Vector2(100, 200));
+            brickBlock = new BrickBlockEntity(this, new Vector2(100, 200));
 
             //-------------------------keyboard control------------------
             keyboard = new KeyboardController();
