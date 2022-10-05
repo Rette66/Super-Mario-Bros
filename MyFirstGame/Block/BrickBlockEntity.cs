@@ -18,6 +18,7 @@ namespace Sprint0.Block
         {        
             BlockType = eBlockType.BrickBlock;
             CurrentState = new BrickBlockNormalState(this);
+            Sprite = BlockFactory.CreateBlock(game,position,(int)BlockType);
             CurrentState.Enter(null);
 
         }
