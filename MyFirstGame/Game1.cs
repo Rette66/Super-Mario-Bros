@@ -118,8 +118,8 @@ namespace Sprint0
             gamepad.Update();
 
             mario.Update(gameTime);
-            //brickBlock.Update(gameTime);
-            //block.Mario = mario;
+            brickBlock.Update(gameTime);
+            brickBlock.Mario = mario;
 
             base.Update(gameTime);
         }
@@ -138,7 +138,7 @@ namespace Sprint0
             //_spriteBatch.Draw(shuttle, new Vector2(450, 240), Color.White);
 
             mario.Draw(_spriteBatch);
-            //brickBlock.Draw(_spriteBatch);
+            brickBlock.Draw(_spriteBatch);
 
             _spriteBatch.End();
 
