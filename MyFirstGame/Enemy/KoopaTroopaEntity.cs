@@ -74,15 +74,16 @@ namespace Sprint0.Enemy
                                 }
                                 else if (touching == CollisionDetector.Touching.top)
                                 {
-                                    //Kills the troopa
+                                    EntityStorage.Instance.movableRemove(this);
+                                    EntityStorage.Instance.ColliableEntites.Remove(this);
                                 }
                             }
                             else if (EnemyType.Equals(eEnemyType.MovingDeadKoopaTroopa))
                             {
                                 if (touching == CollisionDetector.Touching.top)
                                 {
-                                    EntityStorage.Instance.movableRemove(this);
-                                    EntityStorage.Instance.ColliableEntites.Remove(this);
+                                    ShellTransition();
+                                    EnemyType = eEnemyType.IdleDeadKoopaTroopa;
                                 }
                             }
                             break;
